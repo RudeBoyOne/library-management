@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     php-sqlite3 \
     php-pcov \
     php-xdebug \
+    php-curl \
     zip \
     unzip \
     sqlite3 \
@@ -27,8 +28,10 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     php-json
 
-# RUN useradd -rm -d /home/lucas -s /bin/bash -g root -G sudo -u 1001 lucas
-
-# WORKDIR /workspace
-
-# USER lucas
+# Instale o PHIVE 
+RUN wget -O phive.phar https://phar.io/releases/phive.phar && \ 
+    wget -O phive.phar.asc https://phar.io/releases/phive.phar.asc && \ 
+    gpg --keyserver hkps://keys.openpgp.org --recv-keys 0x9D8A98B29B2D5D79 && \ 
+    gpg --verify phive.phar.asc phive.phar && \ 
+    chmod +x phive.phar && \ 
+    mv phive.phar /usr/local/bin/phive
