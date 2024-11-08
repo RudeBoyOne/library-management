@@ -1,0 +1,40 @@
+{
+	"name": "Teste - Live eCommerce",
+
+	"build": {
+        "dockerfile": "Dockerfile"
+    },
+    
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {
+			"ppa": true,
+			"version": "latest"
+		},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-php-composer:0": {
+			"version": "2.8.2"
+		},
+		"ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {
+			"setLocale": true,
+			"theme": "robbyrussell",
+			"plugins": "git docker"
+		}
+    },
+
+	"customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "felixfbecker.php-debug",
+                "mehedidracula.php-namespace-resolver",
+                "hakcorp.php-awesome-snippets",
+				"DEVSENSE.phptools-vscode"
+            ]
+        }
+    },
+
+	"forwardPorts": [
+		8080
+	],
+
+	"remoteUser": "ubuntu"
+}
