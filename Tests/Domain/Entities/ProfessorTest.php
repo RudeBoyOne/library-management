@@ -6,7 +6,8 @@ use PHPUnit\Framework\TestCase;
 
 class ProfessorTest extends TestCase
 {
-    public function testCanTakeOutMoreLoans() {
+    public function testCanTakeOutMoreLoans()
+    {
         $professor = new Professor();
         $this->assertIsBool($professor->canTakeOutMoreLoans(2));
     }

@@ -1,9 +1,9 @@
 <?php
 namespace App\Library;
+
 require_once "../vendor/autoload.php";
 
 use App\Library\Domain\Entities\Professor;
-
 
 header('Content-Type: application/json');
 
@@ -16,7 +16,6 @@ switch ($method) {
 
         $professor = new Professor();
 
-        
-    break;
+        break;
 
 }

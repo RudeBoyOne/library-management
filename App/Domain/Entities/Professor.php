@@ -8,18 +8,20 @@ use App\Library\Domain\Entities\User;
  */
 class Professor extends User
 {
-    
+
     /**
      * método construtor de Professor um usuário que a ele é permitido fazer até 3 empréstimos
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->setLoanAmount(3);
     }
 
     /**
      * @inheritDoc
      */
-    public function canTakeOutMoreLoans(int $amountCurrentLoans): bool {
+    public function canTakeOutMoreLoans(int $amountCurrentLoans): bool
+    {
         return $amountCurrentLoans <= $this->getLoanAmount();
     }
 
