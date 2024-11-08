@@ -28,6 +28,6 @@
         "test-domain": "vendor/bin/phpunit --testsuite 'Domain Tests'", 
         "test-infrastructure": "vendor/bin/phpunit --testsuite 'Infrastructure Tests'", 
         "test-presentation": "vendor/bin/phpunit --testsuite 'Presentation Tests'", 
-        "generate-docs": "vendor/bin/apigen --config config-docs.neon"
+        "generate-docs": "/workspaces/live_ecommerce/documentation/tools/phpdocumentor -d /workspaces/live_ecommerce/App -t /workspaces/live_ecommerce/documentation/docs-api"
     }
 }
