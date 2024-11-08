@@ -27,7 +27,8 @@
                 "felixfbecker.php-debug",
                 "mehedidracula.php-namespace-resolver",
                 "hakcorp.php-awesome-snippets",
-				"DEVSENSE.phptools-vscode"
+				"DEVSENSE.phptools-vscode",
+				"kokororin.vscode-phpfmt"
             ]
         }
     },
