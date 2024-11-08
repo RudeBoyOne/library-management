@@ -7,7 +7,7 @@ abstract class User
 {
     /**
      * User id
-     * @var
+     * @var int
      */
     private int $id;
     /**
