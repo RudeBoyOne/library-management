@@ -3,3 +3,4 @@ vendor
 documentation/.phpdoc
 documentation/.phive
 documentation/tools
+.phpdoc
