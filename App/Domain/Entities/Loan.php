@@ -1,7 +1,7 @@
 <?php
 namespace App\Library\Domain\Entities;
 
-use App\Library\Domain\Entities\User;
+use App\Library\Domain\Entities\UserEntities\User;
 use DateTime;
 use InvalidArgumentException;
 

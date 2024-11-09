@@ -1,9 +1,9 @@
 <?php
 namespace Tests\Domain\Entities;
 
-use App\Library\Domain\Entities\Professor;
+use App\Library\Domain\Entities\UserEntities\Professor;
+use App\Library\Domain\Entities\UserEntities\User;
 use App\Library\Domain\Entities\Role;
-use App\Library\Domain\Entities\User;
 use PHPUnit\Framework\TestCase;
 
 class ProfessorTest extends TestCase

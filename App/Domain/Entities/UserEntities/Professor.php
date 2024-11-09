@@ -1,7 +1,7 @@
 <?php
-namespace App\Library\Domain\Entities;
+namespace App\Library\Domain\Entities\UserEntities;
 
-use App\Library\Domain\Entities\User;
+use App\Library\Domain\Entities\UserEntities\User;
 
 /**
  * Class Professor

@@ -1,8 +1,8 @@
 <?php
 namespace Tests\Domain\Entities;
 
+use App\Library\Domain\Entities\UserEntities\User;
 use App\Library\Domain\Entities\Loan;
-use App\Library\Domain\Entities\User;
 use DateTime;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
