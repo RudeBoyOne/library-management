@@ -1,21 +1,26 @@
 <?php
 namespace App\Library\Domain\Entities;
 
+/**
+ * Class Role
+ * 
+ * Represents a user role in the system
+ */
 class Role
 {
     /**
-     * Summary of id
+     * Role ID
      * @var int
      */
-    private $id;
+    private int $id;
     /**
-     * Summary of name
+     * Role name
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
-     * Summary of id
+     * Gets the role ID
      * @return int
      */
     public function getId()
@@ -24,8 +29,8 @@ class Role
     }
 
     /**
-     * Summary of id
-     * @param int $id Summary of id
+     * Sets the role ID
+     * @param int $id Role ID
      * @return self
      */
     public function setId($id): self
@@ -35,7 +40,7 @@ class Role
     }
 
     /**
-     * Summary of name
+     * Gets the role name
      * @return string
      */
     public function getName()
@@ -44,8 +49,8 @@ class Role
     }
 
     /**
-     * Summary of name
-     * @param string $name Summary of name
+     * Sets the role name
+     * @param string $name Role name
      * @return self
      */
     public function setName($name): self

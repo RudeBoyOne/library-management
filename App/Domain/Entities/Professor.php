@@ -4,13 +4,17 @@ namespace App\Library\Domain\Entities;
 use App\Library\Domain\Entities\User;
 
 /**
- * Summary of Professor
+ * Class Professor
+ * 
+ * Represents a professor who can make up to 3 loans
  */
 class Professor extends User
 {
 
     /**
-     * método construtor de Professor um usuário que a ele é permitido fazer até 3 empréstimos
+     * Constructor of the Professor class
+     * 
+     * Initializes the maximum loan amount to 3.
      */
     public function __construct()
     {
@@ -18,7 +22,9 @@ class Professor extends User
     }
 
     /**
-     * @inheritDoc
+     * Checks if the professor can make more loans
+     * @param int $amountCurrentLoans Current number of loans
+     * @return bool Returns true if the professor can make more loans
      */
     public function canTakeOutMoreLoans(int $amountCurrentLoans): bool
     {

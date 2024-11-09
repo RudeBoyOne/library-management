@@ -3,10 +3,15 @@ namespace App\Library\Domain\Entities;
 
 use App\Library\Domain\Entities\Role;
 
+/**
+ * Class User
+ * 
+ * Represents a user in the system. 
+ */
 abstract class User
 {
     /**
-     * User id
+     * User ID
      * @var int
      */
     private int $id;
@@ -26,17 +31,18 @@ abstract class User
      */
     private string $registration;
     /**
-     * user loan amount
+     * Number of loans the user can make
      * @var int
      */
     private int $loanAmount;
     /**
-     * Summary of role
+     * User role
      * @var Role
      */
     private Role $role;
 
     /**
+     * Gets the user ID
      * @return int
      */
     public function getId(): int
@@ -45,7 +51,8 @@ abstract class User
     }
 
     /**
-     * @param mixed $id
+     * Sets the user ID
+     * @param int $id User ID
      * @return self
      */
     public function setId($id): self
@@ -55,7 +62,7 @@ abstract class User
     }
 
     /**
-     * Username
+     * Gets the username
      * @return string
      */
     public function getName()
@@ -64,7 +71,7 @@ abstract class User
     }
 
     /**
-     * Username
+     * Sets the username
      * @param string $name Username
      * @return self
      */
@@ -75,7 +82,7 @@ abstract class User
     }
 
     /**
-     * User email
+     * Gets the user email
      * @return string
      */
     public function getEmail()
@@ -84,7 +91,7 @@ abstract class User
     }
 
     /**
-     * User email
+     * Sets the user email
      * @param string $email User email
      * @return self
      */
@@ -95,7 +102,7 @@ abstract class User
     }
 
     /**
-     * User registration
+     * Gets the user registration
      * @return string
      */
     public function getRegistration()
@@ -104,7 +111,7 @@ abstract class User
     }
 
     /**
-     * User registration
+     * Sets the user registration
      * @param string $registration User registration
      * @return self
      */
@@ -115,7 +122,7 @@ abstract class User
     }
 
     /**
-     * User role
+     * Gets the user role
      * @return Role
      */
     public function getRole(): Role
@@ -124,7 +131,7 @@ abstract class User
     }
 
     /**
-     * User role
+     * Sets the user role
      * @param Role $role User role
      * @return self
      */
@@ -135,7 +142,7 @@ abstract class User
     }
 
     /**
-     * user loan amount
+     * Gets the number of loans the user can make
      * @return int
      */
     public function getLoanAmount(): int
@@ -144,8 +151,8 @@ abstract class User
     }
 
     /**
-     * user loan amount
-     * @param int $loanAmount user loan amount
+     * Sets the number of loans the user can make
+     * @param int $loanAmount Number of loans
      * @return self
      */
     public function setLoanAmount(int $loanAmount): self
@@ -155,9 +162,9 @@ abstract class User
     }
 
     /**
-     * The user can take out more loans
-     * @param int $amountCurrentLoans
-     * @return bool
+     * Checks if the user can make more loans
+     * @param int $amountCurrentLoans Current number of loans
+     * @return bool Returns true if the user can make more loans.
      */
     abstract public function canTakeOutMoreLoans(int $amountCurrentLoans): bool;
 
