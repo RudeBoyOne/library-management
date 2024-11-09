@@ -99,7 +99,7 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Role
+    ISBN
 
     
             <div class="phpdocumentor-element__package">
@@ -114,20 +114,23 @@
 
 <div class="phpdocumentor-label-line">
 
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Final</span><span>Yes</span></div>
+
 
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/Role.php"><a href="files/domain-entities-role.html"><abbr title="Domain/Entities/Role.php">Role.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/ISBN.php"><a href="files/domain-entities-isbn.html"><abbr title="Domain/Entities/ISBN.php">ISBN.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Class Role</p>
+            <p class="phpdocumentor-summary">Class ISBN</p>
 
 
-    <section class="phpdocumentor-description"><p>Represents a user role in the system</p>
+    <section class="phpdocumentor-description"><p>Represents the ISBN code of books in the application.
+This class is a Value Object and is immutable.</p>
 </section>
 
 
@@ -138,7 +141,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/App-Library-Domain-Entities-Role.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/App-Library-Domain-Entities-ISBN.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -152,59 +155,45 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/App-Library-Domain-Entities-Role.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/App-Library-Domain-Entities-ISBN.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/App-Library-Domain-Entities-Role.html#property_id">$id</a>
-    <span>
-                        &nbsp;: int            </span>
-</dt>
-<dd>Role ID</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/App-Library-Domain-Entities-Role.html#property_name">$name</a>
+    <a class="" href="classes/App-Library-Domain-Entities-ISBN.html#property_value">$value</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd>Role name</dd>
+<dd>The value of the ISBN</dd>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/App-Library-Domain-Entities-Role.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/App-Library-Domain-Entities-ISBN.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/App-Library-Domain-Entities-Role.html#method_getId">getId()</a>
+    <a class="" href="classes/App-Library-Domain-Entities-ISBN.html#method_equals">equals()</a>
     <span>
-                                &nbsp;: int    </span>
+                                &nbsp;: bool    </span>
 </dt>
-<dd>Gets the role ID</dd>
+<dd>Checks equality with another ISBN object</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/App-Library-Domain-Entities-Role.html#method_getName">getName()</a>
+    <a class="" href="classes/App-Library-Domain-Entities-ISBN.html#method_getValue">getValue()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Gets the role name</dd>
+<dd>Gets the ISBN value</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/App-Library-Domain-Entities-Role.html#method_setId">setId()</a>
+    <a class="" href="classes/App-Library-Domain-Entities-ISBN.html#method_setValue">setValue()</a>
     <span>
                                 &nbsp;: self    </span>
 </dt>
-<dd>Sets the role ID</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/App-Library-Domain-Entities-Role.html#method_setName">setName()</a>
-    <span>
-                                &nbsp;: self    </span>
-</dt>
-<dd>Sets the role name</dd>
+<dd>Sets the ISBN value</dd>
 
     </dl>
 
@@ -216,7 +205,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/App-Library-Domain-Entities-Role.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/App-Library-Domain-Entities-ISBN.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -226,64 +215,27 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_id">
-        $id
-        <a href="classes/App-Library-Domain-Entities-Role.html#property_id" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_value">
+        $value
+        <a href="classes/App-Library-Domain-Entities-ISBN.html#property_value" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/Role.php"><a href="files/domain-entities-role.html"><abbr title="Domain/Entities/Role.php">Role.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/ISBN.php"><a href="files/domain-entities-isbn.html"><abbr title="Domain/Entities/ISBN.php">ISBN.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Role ID</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$id</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_name">
-        $name
-        <a href="classes/App-Library-Domain-Entities-Role.html#property_name" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/Role.php"><a href="files/domain-entities-role.html"><abbr title="Domain/Entities/Role.php">Role.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">20</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Role name</p>
+        <p class="phpdocumentor-summary">The value of the ISBN</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$name</span>
+    <span class="phpdocumentor-signature__name">$value</span>
     </code>
 
     
@@ -298,7 +250,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/App-Library-Domain-Entities-Role.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/App-Library-Domain-Entities-ISBN.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -307,36 +259,52 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getId">
-        getId()
-        <a href="classes/App-Library-Domain-Entities-Role.html#method_getId" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_equals">
+        equals()
+        <a href="classes/App-Library-Domain-Entities-ISBN.html#method_equals" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/Role.php"><a href="files/domain-entities-role.html"><abbr title="Domain/Entities/Role.php">Role.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/ISBN.php"><a href="files/domain-entities-isbn.html"><abbr title="Domain/Entities/ISBN.php">ISBN.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Gets the role ID</p>
+        <p class="phpdocumentor-summary">Checks equality with another ISBN object</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getId</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">equals</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Library-Domain-Entities-ISBN.html"><abbr title="\App\Library\Domain\Entities\ISBN">ISBN</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$isbn</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$isbn</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Library-Domain-Entities-ISBN.html"><abbr title="\App\Library\Domain\Entities\ISBN">ISBN</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The ISBN object to compare with</p>
+</section>
+
+            </dd>
+            </dl>
+
     
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int</span>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Returns true if the ISBNs are equal.</p>
+</section>
+
             </section>
 
 </article>
@@ -346,23 +314,23 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getName">
-        getName()
-        <a href="classes/App-Library-Domain-Entities-Role.html#method_getName" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getValue">
+        getValue()
+        <a href="classes/App-Library-Domain-Entities-ISBN.html#method_getValue" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/Role.php"><a href="files/domain-entities-role.html"><abbr title="Domain/Entities/Role.php">Role.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/ISBN.php"><a href="files/domain-entities-isbn.html"><abbr title="Domain/Entities/ISBN.php">ISBN.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Gets the role name</p>
+        <p class="phpdocumentor-summary">Gets the ISBN value</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getValue</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -376,57 +344,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setId">
-        setId()
-        <a href="classes/App-Library-Domain-Entities-Role.html#method_setId" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/Role.php"><a href="files/domain-entities-role.html"><abbr title="Domain/Entities/Role.php">Role.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">36</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Sets the role ID</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setId</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Role ID</p>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The ISBN value</p>
 </section>
 
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">self</span>
             </section>
 
 </article>
@@ -436,23 +357,23 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_setName">
-        setName()
-        <a href="classes/App-Library-Domain-Entities-Role.html#method_setName" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_setValue">
+        setValue()
+        <a href="classes/App-Library-Domain-Entities-ISBN.html#method_setValue" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/Role.php"><a href="files/domain-entities-role.html"><abbr title="Domain/Entities/Role.php">Role.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Domain/Entities/ISBN.php"><a href="files/domain-entities-isbn.html"><abbr title="Domain/Entities/ISBN.php">ISBN.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Sets the role name</p>
+        <p class="phpdocumentor-summary">Sets the ISBN value</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+                    <span class="phpdocumentor-signature__name">setValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -461,11 +382,11 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$name</span>
+                <span class="phpdocumentor-signature__argument__name">$value</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Role name</p>
+                    <section class="phpdocumentor-description"><p>The new ISBN value</p>
 </section>
 
             </dd>
@@ -487,7 +408,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/Domain/Entities/Role.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/Domain/Entities/ISBN.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -586,26 +507,24 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/App-Library-Domain-Entities-Role.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/App-Library-Domain-Entities-Role.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/App-Library-Domain-Entities-ISBN.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/App-Library-Domain-Entities-ISBN.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/App-Library-Domain-Entities-Role.html#property_id">$id</a></li>
-                                                    <li class=""><a href="classes/App-Library-Domain-Entities-Role.html#property_name">$name</a></li>
+                                                    <li class=""><a href="classes/App-Library-Domain-Entities-ISBN.html#property_value">$value</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/App-Library-Domain-Entities-Role.html#method_getId">getId()</a></li>
-                                            <li class=""><a href="classes/App-Library-Domain-Entities-Role.html#method_getName">getName()</a></li>
-                                            <li class=""><a href="classes/App-Library-Domain-Entities-Role.html#method_setId">setId()</a></li>
-                                            <li class=""><a href="classes/App-Library-Domain-Entities-Role.html#method_setName">setName()</a></li>
+                                            <li class=""><a href="classes/App-Library-Domain-Entities-ISBN.html#method_equals">equals()</a></li>
+                                            <li class=""><a href="classes/App-Library-Domain-Entities-ISBN.html#method_getValue">getValue()</a></li>
+                                            <li class=""><a href="classes/App-Library-Domain-Entities-ISBN.html#method_setValue">setValue()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -625,7 +544,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/App-Library-Domain-Entities-Role.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/App-Library-Domain-Entities-ISBN.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
