@@ -5,10 +5,10 @@ use PDO;
 
 /**
  * Singleton class to manage database connection.
- * 
+ *
  * This class uses the Singleton pattern to ensure that only one instance
  * of the database connection is created and reused during the application's lifecycle.
- * The connection is established using PDO with a database path defined by an environment variable. 
+ * The connection is established using PDO with a database path defined by an environment variable.
  */
 class Connection
 {
@@ -19,21 +19,21 @@ class Connection
     private static $instance = null;
     /**
      * Database path.
-     * @var string 
+     * @var string
      */
     private $path;
     /**
      * PDO instance for the database connection.
-     * @var PDO 
+     * @var PDO
      */
     private PDO $connection;
 
     /**
      * Class constructor.
-     * 
+     *
      * The constructor is private to prevent creating multiple instances of the class.
      * It initializes the database connection using the path specified in the DB_PATH environment variable.
-     * @throws \PDOException If the database connection fails. 
+     * @throws \PDOException If the database connection fails.
      */
     public function __construct()
     {
@@ -52,5 +52,15 @@ class Connection
             self::$instance = new self();
         }
         return self::$instance->connection;
+    }
+
+    /**
+     * Sets the instance as an in-memory connection for testing purposes.
+     * @param PDO $connection The PDO instance to use.
+     */
+    public static function setInstance(PDO $connection): void
+    {
+        self::$instance = new self();
+        self::$instance->connection = $connection;
     }
 }
