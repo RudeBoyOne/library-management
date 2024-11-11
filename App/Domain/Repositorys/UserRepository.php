@@ -103,7 +103,7 @@ class UserRepository
         }
     }
 
-    public function getAllUsers()
+    public function getAllUsers(): array
     {
         $query = "SELECT * FROM $this->table";
         $statement = $this->connection->prepare($query);
@@ -112,7 +112,7 @@ class UserRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function deleteUser($idUser)
+    public function deleteUser($idUser): bool
     {
         $query = "DELETE FROM $this->table WHERE id = :id";
 
