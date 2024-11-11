@@ -12,7 +12,7 @@ use App\Library\Domain\Entities\Section;
 class Book
 {
     /**
-     * Book ID
+     * Book id
      * @var int
      */
     private int $id;
@@ -31,6 +31,11 @@ class Book
      * @var ISBN
      */
     private ISBN $isbn;
+    /**
+     * Amount Of Books
+     * @var int
+     */
+    private int $amountOfBooks;
     /**
      * Book section
      * @var Section
@@ -136,4 +141,22 @@ class Book
         $this->section = $section;
         return $this;
     }
+
+	/**
+	 * Gets the Amount Of Books
+	 * @return int
+	 */
+	public function getAmountOfBooks(): int {
+		return $this->amountOfBooks;
+	}
+	
+	/**
+	 * Sets the Amount Of Books
+	 * @param int $amountOfBooks Amount Of Books
+	 * @return self
+	 */
+	public function setAmountOfBooks(int $amountOfBooks): self {
+		$this->amountOfBooks = $amountOfBooks;
+		return $this;
+	}
 }
