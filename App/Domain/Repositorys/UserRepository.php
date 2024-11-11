@@ -29,10 +29,10 @@ class UserRepository
         $query = "INSERT INTO $this->table (name, email, registration, role) VALUES (:name, :email, :registration, :role)";
 
         $statement = $this->connection->prepare($query);
-        $statement->bindValue(":name", $name, PDO::PARAM_STR);
-        $statement->bindValue(":email", $email, PDO::PARAM_STR);
-        $statement->bindValue(":registration", $registration, PDO::PARAM_STR);
-        $statement->bindValue(":role", $role, PDO::PARAM_INT);
+        $statement->bindParam(":name", $name, PDO::PARAM_STR);
+        $statement->bindParam(":email", $email, PDO::PARAM_STR);
+        $statement->bindParam(":registration", $registration, PDO::PARAM_STR);
+        $statement->bindParam(":role", $role, PDO::PARAM_INT);
 
         return $statement->execute();
     }
@@ -47,11 +47,11 @@ class UserRepository
         $query = "UPDATE $this->table SET name = :name, email = :email, registration = :registration, role = :role WHERE id = :id";
 
         $statement = $this->connection->prepare($query);
-        $statement->bindValue(":name", $name, PDO::PARAM_STR);
-        $statement->bindValue(":email", $email, PDO::PARAM_STR);
-        $statement->bindValue(":registration", $registration, PDO::PARAM_STR);
-        $statement->bindValue(":role", $role, PDO::PARAM_INT);
-        $statement->bindValue(":id", $idUser, PDO::PARAM_INT);
+        $statement->bindParam(":name", $name, PDO::PARAM_STR);
+        $statement->bindParam(":email", $email, PDO::PARAM_STR);
+        $statement->bindParam(":registration", $registration, PDO::PARAM_STR);
+        $statement->bindParam(":role", $role, PDO::PARAM_INT);
+        $statement->bindParam(":id", $idUser, PDO::PARAM_INT);
 
         return $statement->execute();
     }
@@ -60,7 +60,7 @@ class UserRepository
     {
         $query = "SELECT u.*, r.name as role_name FROM $this->table u JOIN $this->tableAssoc r ON u.role = r.id WHERE u.id = :id";
         $statement = $this->connection->prepare($query);
-        $statement->bindValue(":id", $idUser, PDO::PARAM_INT);
+        $statement->bindParam(":id", $idUser, PDO::PARAM_INT);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_OBJ);
 
@@ -110,5 +110,15 @@ class UserRepository
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteUser($idUser)
+    {
+        $query = "DELETE FROM $this->table WHERE id = :id";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(":id", $idUser, PDO::PARAM_INT);
+        
+        return $statement->execute();
     }
 }

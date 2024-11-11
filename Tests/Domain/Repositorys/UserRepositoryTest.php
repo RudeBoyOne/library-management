@@ -128,27 +128,27 @@ class UserRepositoryTest extends TestCase
 
     public function testGetAllUsers(): void
     {
-        $initialRole = $this->createMock(Role::class);
-        $initialRole->method('getId')->willReturn(1);
+        $firstRole = $this->createMock(Role::class);
+        $firstRole->method('getId')->willReturn(1);
 
-        $initialUser = $this->createMock(User::class);
-        $initialUser->method('getName')->willReturn('Professor User');
-        $initialUser->method('getEmail')->willReturn('professor@example.com');
-        $initialUser->method('getRegistration')->willReturn('123456');
-        $initialUser->method('getRole')->willReturn($initialRole);
+        $firstUser = $this->createMock(User::class);
+        $firstUser->method('getName')->willReturn('Professor User');
+        $firstUser->method('getEmail')->willReturn('professor@example.com');
+        $firstUser->method('getRegistration')->willReturn('123456');
+        $firstUser->method('getRole')->willReturn($firstRole);
 
-        $this->assertTrue($this->userRepository->createUser($initialUser));
+        $this->assertTrue($this->userRepository->createUser($firstUser));
 
-        $initialRole = $this->createMock(Role::class);
-        $initialRole->method('getId')->willReturn(2);
+        $secondRole = $this->createMock(Role::class);
+        $secondRole->method('getId')->willReturn(2);
 
-        $initialUser = $this->createMock(User::class);
-        $initialUser->method('getName')->willReturn('Student User');
-        $initialUser->method('getEmail')->willReturn('student@example.com');
-        $initialUser->method('getRegistration')->willReturn('654321');
-        $initialUser->method('getRole')->willReturn($initialRole);
+        $secondUser = $this->createMock(User::class);
+        $secondUser->method('getName')->willReturn('Student User');
+        $secondUser->method('getEmail')->willReturn('student@example.com');
+        $secondUser->method('getRegistration')->willReturn('654321');
+        $secondUser->method('getRole')->willReturn($secondRole);
 
-        $this->assertTrue($this->userRepository->createUser($initialUser));
+        $this->assertTrue($this->userRepository->createUser($secondUser));
 
         $users = $this->userRepository->getAllUsers();
 
@@ -162,5 +162,29 @@ class UserRepositoryTest extends TestCase
         $this->assertEquals('student@example.com', $users[1]['email']);
         $this->assertEquals('654321', $users[1]['registration']);
         $this->assertEquals(2, $users[1]['role']);
+    }
+
+    public function testDeleteUser()
+    {
+        $role = $this->createMock(Role::class);
+        $role->method('getId')->willReturn(1);
+
+        $user = $this->createMock(User::class);
+        $user->method('getName')->willReturn('Professor User');
+        $user->method('getEmail')->willReturn('professor@example.com');
+        $user->method('getRegistration')->willReturn('123456');
+        $user->method('getRole')->willReturn($role);
+
+        $this->assertTrue($this->userRepository->createUser($user));
+
+        $stmt = $this->connection->query("SELECT id FROM user WHERE email = 'professor@example.com'");
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $userId = $result['id'];
+
+        $this->assertTrue($this->userRepository->deleteUser($userId));
+        
+        $stmt = $this->connection->query("SELECT * FROM user WHERE id = $userId");
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->assertFalse($result);
     }
 }
