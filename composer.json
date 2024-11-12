@@ -25,7 +25,7 @@
     "scripts": { 
         "test": "vendor/bin/phpunit", 
         "test-application": "vendor/bin/phpunit --testsuite 'Application Tests'", 
-        "test-domain": "vendor/bin/phpunit --testsuite 'Domain Tests'", 
+        "test-domain": "vendor/bin/phpunit --testsuite 'Domain Tests' --display-deprecations --display-notices", 
         "test-infrastructure": "vendor/bin/phpunit --testsuite 'Infrastructure Tests'", 
         "test-presentation": "vendor/bin/phpunit --testsuite 'Presentation Tests'", 
         "generate-docs": "/workspaces/live_ecommerce/documentation/tools/phpdocumentor -d /workspaces/live_ecommerce/App -t /workspaces/live_ecommerce/documentation/docs-api"

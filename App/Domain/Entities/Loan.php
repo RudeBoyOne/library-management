@@ -32,6 +32,11 @@ class Loan
      * @var User
      */
     private User $user;
+    /**
+     * Books from a loan
+     * @var Book[]
+     * */
+    private array $books = [];
 
     /**
      * Gets the loan ID
@@ -121,4 +126,32 @@ class Loan
         $this->user = $user;
         return $this;
     }
+
+	/**
+     * Gets books from a loan
+	 * @return array
+	 */
+	public function getBooks(): array {
+		return $this->books;
+	}
+	
+	/**
+     * Add a book to loan
+	 * @param array $books 
+	 * @return self
+	 */
+	public function addBooks(Book $book): self {
+		$this->books[] = $book;
+		return $this;
+	}
+
+	/**
+	 * Books from a loan
+	 * @param array $books Books from a loan
+	 * @return self
+	 */
+	public function setBooks(array $books): self {
+		$this->books = $books;
+		return $this;
+	}
 }
