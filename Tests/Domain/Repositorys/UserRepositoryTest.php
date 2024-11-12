@@ -86,12 +86,13 @@ class UserRepositoryTest extends TestCase
         $updatedRole = $this->createMock(Role::class);
         $updatedRole->method('getId')->willReturn(2);
         $updatedUser = $this->createMock(User::class);
+        $updatedUser->method('getId')->willReturn($userId);
         $updatedUser->method('getName')->willReturn('Updated User');
         $updatedUser->method('getEmail')->willReturn('updateduser@example.com');
         $updatedUser->method('getRegistration')->willReturn('654321');
         $updatedUser->method('getRole')->willReturn($updatedRole);
 
-        $this->assertTrue($this->userRepository->updateUser($userId, $updatedUser));
+        $this->assertTrue($this->userRepository->updateUser($updatedUser));
 
         $stmt = $this->connection->query("SELECT * FROM $this->table WHERE id = $userId");
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

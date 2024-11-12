@@ -37,8 +37,9 @@ class UserRepository
         return $statement->execute();
     }
 
-    public function updateUser(int $idUser, User $user): bool
+    public function updateUser(User $user): bool
     {
+        $id = $user->getId();
         $name = $user->getName();
         $email = $user->getEmail();
         $registration = $user->getRegistration();
@@ -51,7 +52,7 @@ class UserRepository
         $statement->bindParam(":email", $email, PDO::PARAM_STR);
         $statement->bindParam(":registration", $registration, PDO::PARAM_STR);
         $statement->bindParam(":role", $role, PDO::PARAM_INT);
-        $statement->bindParam(":id", $idUser, PDO::PARAM_INT);
+        $statement->bindParam(":id", $id, PDO::PARAM_INT);
 
         return $statement->execute();
     }
