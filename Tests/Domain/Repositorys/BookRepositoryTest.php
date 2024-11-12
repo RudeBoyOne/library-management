@@ -82,13 +82,14 @@ class BookRepositoryTest extends TestCase
         $section->method('getId')->willReturn(2);
 
         $book = new Book();
-        $book->setTitle('Updated Title')
+        $book->setId($bookId)
+            ->setTitle('Updated Title')
             ->setAuthor('Updated Author')
             ->setIsbn($isbn)
             ->setAmountOfBooks(20)
             ->setSection($section);
 
-        $this->assertTrue($this->bookRepository->updateBook($bookId, $book));
+        $this->assertTrue($this->bookRepository->updateBook($book));
 
         $stmt = $this->connection->query("SELECT * FROM book WHERE id = $bookId");
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -38,17 +38,19 @@ class BookRepository
         return $statement->execute();
     }
 
-    public function updateBook(int $idBook, Book $book): bool
+    public function updateBook(Book $book): bool
     {
+        $id = $book->getId();
         $title = $book->getTitle();
         $author = $book->getAuthor();
         $isbn = $book->getIsbn()->getValue();
         $amountOfBooks = $book->getAmountOfBooks();
         $section = $book->getSection()->getId();
 
-        $query = "UPDATE $this->table SET title = :title, author = :author, isbn = :isbn, amount_of_books = :amount_of_books, section = :section";
+        $query = "UPDATE $this->table SET title = :title, author = :author, isbn = :isbn, amount_of_books = :amount_of_books, section = :section WHERE id = :id";
 
         $statement = $this->connection->prepare($query);
+        $statement->bindParam(":id", $id, PDO::PARAM_INT);
         $statement->bindParam(":title", $title, PDO::PARAM_STR);
         $statement->bindParam(":author", $author, PDO::PARAM_STR);
         $statement->bindParam(":isbn", $isbn, PDO::PARAM_STR);
@@ -71,10 +73,11 @@ class BookRepository
         $isbn->setValue($result->isbn);
 
         $section = new Section();
-        $section->setId($result->section);
+        $section->setId((int)$result->section);
 
         $book = new Book();
-        $book->setTitle($result->title)
+        $book->setId((int)$result->id)
+            ->setTitle($result->title)
             ->setAuthor($result->author)
             ->setIsbn($isbn)
             ->setAmountOfBooks($result->amount_of_books)
