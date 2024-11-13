@@ -5,30 +5,33 @@ use App\Library\Domain\Entities\Loan;
 use App\Library\Domain\Repositorys\LoanRepository;
 use App\Library\Domain\Services\LoanService;
 use App\Library\Util\DateTimeZoneCustom;
-use PHPUnit\Framework\TestCase;
+use Tests\SetupTests;
 
-class LoanServiceTest extends TestCase
+class LoanServiceTest extends SetupTests
 {
-    private $loanRepository;
-    private $loanServices;
+    private $loanRepositoryMock;
+    private LoanService $loanServices;
 
     protected function setUp(): void
     {
-        $this->loanRepository = $this->createMock(LoanRepository::class);
-        // Injeção de dependência do mock no serviço
-        $this->loanServices = new LoanService($this->loanRepository);
+        parent::setUp();
+
+        $this->loanRepositoryMock = $this->createMock(LoanRepository::class);
+        $this->loanServices = new LoanService($this->loanRepositoryMock);
+
+        $this->insertSampleData();
     }
 
     public function testCreate()
     {
-        $data = (object) ['user' => 1, 'book' => [1, 2], 'dateLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-01 10:00:00'), 'returnLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-15 10:00:00')];
+        $data = (object) ['user' => 1, 'books' => [1, 2], 'dateLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-01 10:00:00'), 'returnLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-15 10:00:00')];
 
         $loan = $this->createMock(Loan::class);
         $loan->method('getId')->willReturn(1);
         $loan->method('getDateLoan')->willReturn($data->dateLoan);
         $loan->method('getReturnLoan')->willReturn($data->returnLoan);
 
-        $this->loanRepository->expects($this->once())
+        $this->loanRepositoryMock->expects($this->once())
                             ->method('createLoan')
                             ->with($this->isInstanceOf(Loan::class))
                             ->willReturn(true);

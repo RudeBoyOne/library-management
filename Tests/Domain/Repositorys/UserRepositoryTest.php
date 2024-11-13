@@ -7,40 +7,20 @@ use App\Library\Domain\Repositorys\UserRepository;
 use App\Library\Infrastructure\Persistence\Connection;
 use PDO;
 use PHPUnit\Framework\TestCase;
+use Tests\SetupTests;
 
-class UserRepositoryTest extends TestCase
+class UserRepositoryTest extends SetupTests
 {
-    private PDO $connection;
     private UserRepository $userRepository;
     private string $table = 'user';
 
     protected function setUp(): void
     {
-        $this->connection = new PDO('sqlite::memory:');
-        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $this->connection->exec("
-            CREATE TABLE role (
-                id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                name VARCHAR(100) NOT NULL )
-        ");
-
-        $this->connection->exec("INSERT INTO role (name) VALUES ('Professor') ");
-        $this->connection->exec("INSERT INTO role (name) VALUES ('Student') ");
-
-        $this->connection->exec("
-            CREATE TABLE user (
-                id           INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                name         VARCHAR(100) NOT NULL,
-                email        VARCHAR(100) NOT NULL,
-                registration VARCHAR(100) NOT NULL,
-                role         INTEGER NOT NULL
-            )
-        ");
-
-        Connection::setInstance($this->connection);
+        parent::setUp();
 
         $this->userRepository = new UserRepository();
+
+        $this->insertSampleData();
     }
 
     public function testCreateUser(): void
@@ -153,7 +133,7 @@ class UserRepositoryTest extends TestCase
 
         $users = $this->userRepository->getAllUsers();
 
-        $this->assertCount(2, $users);
+        $this->assertCount(4, $users);
         $this->assertEquals('Professor User', $users[0]['name']);
         $this->assertEquals('professor@example.com', $users[0]['email']);
         $this->assertEquals('123456', $users[0]['registration']);

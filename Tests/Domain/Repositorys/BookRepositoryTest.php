@@ -5,34 +5,21 @@ use App\Library\Domain\Entities\Book;
 use App\Library\Domain\Entities\ISBN;
 use App\Library\Domain\Entities\Section;
 use App\Library\Domain\Repositorys\BookRepository;
-use App\Library\Infrastructure\Persistence\Connection;
 use PDO;
-use PHPUnit\Framework\TestCase;
+use Tests\SetupTests;
 
-class BookRepositoryTest extends TestCase
+class BookRepositoryTest extends SetupTests
 {
-    private PDO $connection;
     private BookRepository $bookRepository;
     private string $table = "book";
 
     public function setUp(): void
     {
-        $this->connection = new PDO('sqlite::memory:');
-        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->connection->exec("
-            CREATE TABLE book (
-                id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                title VARCHAR(100) NOT NULL,
-                author VARCHAR(100) NOT NULL,
-                isbn VARCHAR(13) NOT NULL,
-                amount_of_books INTEGER NOT NULL,
-                section INTEGER NOT NULL
-            )
-        ");
-
-        Connection::setInstance($this->connection);
+        parent::setUp();
 
         $this->bookRepository = new BookRepository();
+
+        $this->insertSampleData();
     }
 
     /**
@@ -118,24 +105,31 @@ class BookRepositoryTest extends TestCase
         $this->assertEquals(1, $book->getSection()->getId());
     }
 
+    /**
+     * testGetAllBooks
+     * 
+     * salinetar na documentação que na class SetupTests já ocorre a inserção de dois livros 
+     * por isso testamos ter 4 livros inseridos e acessamos os livros inseridos aqui pelos indices 2 e 3
+     * @return void
+     */
     public function testGetAllBooks(): void
     {
         $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Book One', 'Author One', '9781234567890', 10, 1), ('Book Two', 'Author Two', '9780987654321', 5, 2) ");
 
         $books = $this->bookRepository->getAllBooks();
 
-        $this->assertCount(2, $books);
-        $this->assertEquals('Book One', $books[0]['title']);
-        $this->assertEquals('Author One', $books[0]['author']);
-        $this->assertEquals('9781234567890', $books[0]['isbn']);
-        $this->assertEquals(10, $books[0]['amount_of_books']);
-        $this->assertEquals(1, $books[0]['section']);
+        $this->assertCount(4, $books);
+        $this->assertEquals('Book One', $books[2]['title']);
+        $this->assertEquals('Author One', $books[2]['author']);
+        $this->assertEquals('9781234567890', $books[2]['isbn']);
+        $this->assertEquals(10, $books[2]['amount_of_books']);
+        $this->assertEquals(1, $books[2]['section']);
 
-        $this->assertEquals('Book Two', $books[1]['title']);
-        $this->assertEquals('Author Two', $books[1]['author']);
-        $this->assertEquals('9780987654321', $books[1]['isbn']);
-        $this->assertEquals(5, $books[1]['amount_of_books']);
-        $this->assertEquals(2, $books[1]['section']);
+        $this->assertEquals('Book Two', $books[3]['title']);
+        $this->assertEquals('Author Two', $books[3]['author']);
+        $this->assertEquals('9780987654321', $books[3]['isbn']);
+        $this->assertEquals(5, $books[3]['amount_of_books']);
+        $this->assertEquals(2, $books[3]['section']);
     }
 
     public function testDeleteBook(): void
