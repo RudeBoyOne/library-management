@@ -4,16 +4,16 @@ namespace Tests\Domain\Repositorys;
 use App\Library\Domain\Entities\Book;
 use App\Library\Domain\Entities\Loan;
 use App\Library\Domain\Entities\UserEntities\User;
-use App\Library\Domain\Repositorys\LoanRepository;
+use App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl;
 use App\Library\Infrastructure\Persistence\Connection;
 use App\Library\Util\DateTimeZoneCustom;
 use PDO;
 use PHPUnit\Framework\TestCase;
 
-class LoanRepositoryTest extends TestCase
+class LoanRepositoryImplTest extends TestCase
 {
     private PDO $connection;
-    private LoanRepository $loanRepository;
+    private LoanRepositoryImpl $loanRepository;
     private string $table = 'loan';
     private string $tableAssoc = 'loan_books';
 
@@ -82,7 +82,7 @@ class LoanRepositoryTest extends TestCase
 
         Connection::setInstance($this->connection);
 
-        $this->loanRepository = new LoanRepository();
+        $this->loanRepository = new LoanRepositoryImpl();
     }
 
     public function testCreateLoan(): void
@@ -198,10 +198,16 @@ class LoanRepositoryTest extends TestCase
         $this->connection->exec(" INSERT INTO user (name, email, registration, role) VALUES ('Professor User', 'professor@example.com', '123456', $roleId) ");
         $userId = $this->connection->lastInsertId();
 
-        $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Book Title 1', 'Author 1', '123-4567890123', 3, 'Section A') ");
+        $this->connection->exec(" INSERT INTO section (description, localization) VALUES ('Science Fiction', 'A1'); "); 
+        $sectionId1 = $this->connection->lastInsertId(); 
+
+        $this->connection->exec(" INSERT INTO section (description, localization) VALUES ('Fantasy', 'B2'); "); 
+        $sectionId2 = $this->connection->lastInsertId();
+
+        $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Book Title 1', 'Author 1', '123-4567890123', 3, $sectionId1) ");
         $bookId1 = $this->connection->lastInsertId();
-        
-        $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Book Title 2', 'Author 2', '987-6543210987', 5, 'Section B') ");
+
+        $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Book Title 2', 'Author 2', '987-6543210987', 5, $sectionId2) ");
         $bookId2 = $this->connection->lastInsertId();
 
         $this->connection->exec(" INSERT INTO loan (date_loan, return_loan, id_user) VALUES ('2024-11-01 10:00:00', '2024-11-15 10:00:00', $userId)");
@@ -221,4 +227,39 @@ class LoanRepositoryTest extends TestCase
         $this->assertEquals(1, $books[0]->getId());
         $this->assertEquals(2, $books[1]->getId());
     }
+
+    public function testDeleteLoan(): void
+    {
+        $this->connection->exec(" INSERT INTO role (name) VALUES ('Professor') ");
+        $roleId = $this->connection->lastInsertId();
+
+        $this->connection->exec(" INSERT INTO user (name, email, registration, role) VALUES ('Professor User', 'professor@example.com', '123456', $roleId) ");
+        $userId = $this->connection->lastInsertId();
+
+        $this->connection->exec(" INSERT INTO loan (date_loan, return_loan, id_user) VALUES ('2024-11-01 10:00:00', '2024-11-15 10:00:00', $userId) ");
+        $idLoan = $this->connection->lastInsertId();
+
+
+        $this->connection->exec(" INSERT INTO section (description, localization) VALUES ('Science Fiction', 'A1'); "); 
+        $sectionId1 = $this->connection->lastInsertId(); 
+
+        $this->connection->exec(" INSERT INTO section (description, localization) VALUES ('Fantasy', 'B2'); "); 
+        $sectionId2 = $this->connection->lastInsertId();
+
+        $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Book Title 1', 'Author 1', '123-4567890123', 3, $sectionId1) ");
+        $bookId1 = $this->connection->lastInsertId();
+        
+        $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Book Title 2', 'Author 2', '987-6543210987', 5, $sectionId2) ");
+        $bookId2 = $this->connection->lastInsertId();
+
+        $this->connection->exec(" INSERT INTO loan_books (id_loan, id_book) VALUES ($idLoan, $bookId1), ($idLoan, $bookId2) ");
+
+        $this->assertTrue($this->loanRepository->deleteLoan($idLoan));
+        
+        $stmt = $this->connection->query("SELECT * FROM $this->table WHERE id = $idLoan");
+        $loanResult = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->assertFalse($loanResult);
+        $stmt = $this->connection->query("SELECT * FROM $this->tableAssoc WHERE id_loan = $idLoan");
+        $loanBooksResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $this->assertCount(0, $loanBooksResult);}
 }
