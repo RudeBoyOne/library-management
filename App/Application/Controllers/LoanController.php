@@ -1,6 +1,7 @@
 <?php
 namespace App\Library\Application\Controllers;
 
+use App\Library\Application\Utils\Response;
 use App\Library\Domain\Exceptions\BookNotAvailableException;
 use App\Library\Domain\Exceptions\ExceedsLoanLimitException;
 use App\Library\Domain\Exceptions\ResourceNotFoundException;
@@ -19,43 +20,50 @@ class LoanController
     {
         try {
             $result = $this->loanService->create($data);
-            echo json_encode($result);
+            Response::jsonSuccess($result, 201, "loan created successfully");
         } catch (BookNotAvailableException $e) {
-            echo json_encode(['error' => $e->getMessage()]);
+            Response::jsonError($e->getMessage(), 400);
         } catch (ExceedsLoanLimitException $e) {
-            echo json_encode(['error' => $e->getMessage()]);
+            Response::jsonError($e->getMessage(), 400);
         }
     }
 
     public function update($id, $data)
     {
-        $result = $this->loanService->update($id, $data);
-        echo json_encode($result);
+        try {
+            $result = $this->loanService->update($id, $data);
+            Response::jsonSuccess($result, 200, "loan updated successfully");
+        } catch (BookNotAvailableException $e) {
+            Response::jsonError($e->getMessage(), 400);
+        } catch (ExceedsLoanLimitException $e) {
+            Response::jsonError($e->getMessage(), 400);
+        }
     }
 
     public function getById(int $idLoan)
     {
         try {
             $result = $this->loanService->getLoanById($idLoan);
-            echo json_encode($result);
+            Response::jsonSuccess($result, 200);
         } catch (ResourceNotFoundException $e) {
-            echo json_encode(['error' => $e->getMessage()]);
+            Response::jsonError($e->getMessage(), 404);
         }
-
-        echo json_encode($result, JSON_PRETTY_PRINT);
     }
 
     public function getAll()
     {
         $result = $this->loanService->getAllLoans();
-
-        echo json_encode($result, JSON_PRETTY_PRINT);
+        Response::jsonSuccess($result, 200);
     }
 
     public function delete(int $idLoan)
     {
         $result = $this->loanService->delete($idLoan);
 
-        echo json_encode($result, JSON_PRETTY_PRINT);
+        if (!$result) {
+            Response::jsonError("error deleting a loan", 400);
+        }
+        
+        Response::noContent();
     }
 }
