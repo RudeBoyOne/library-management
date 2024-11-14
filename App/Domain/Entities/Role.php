@@ -1,12 +1,14 @@
 <?php
 namespace App\Library\Domain\Entities;
 
+use JsonSerializable;
+
 /**
  * Class Role
- * 
+ *
  * Represents a user role in the system
  */
-class Role
+class Role implements JsonSerializable
 {
     /**
      * Role ID
@@ -57,5 +59,14 @@ class Role
     {
         $this->name = $name;
         return $this;
+    }
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            "name" => $this->getName()
+        ];
     }
 }

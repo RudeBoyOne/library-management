@@ -2,6 +2,7 @@
 namespace App\Library\Domain\Repositorys\Implementation;
 
 use App\Library\Domain\Entities\Loan;
+use App\Library\Domain\Exceptions\ResourceNotFoundException;
 use App\Library\Domain\Repositorys\BookRepository;
 use App\Library\Domain\Repositorys\LoanRepository;
 use App\Library\Domain\Repositorys\UserRepository;
@@ -27,7 +28,7 @@ class LoanRepositoryImpl implements LoanRepository
 
     public function createLoan(Loan $loan): bool
     {
-        
+
         $dateLoan = DateTimeZoneCustom::dateTimeToStringConverter($loan->getDateLoan());
         $returnLoan = DateTimeZoneCustom::dateTimeToStringConverter($loan->getReturnLoan());
         $user = $loan->getUser()->getId();
@@ -96,13 +97,12 @@ class LoanRepositoryImpl implements LoanRepository
         $statement->execute();
         $loan = $statement->fetch(PDO::FETCH_OBJ);
 
-        $loanEntitie = new Loan();
-        $loanEntitie->setId($loan->id)
-            ->setDateLoan(DateTimeZoneCustom::stringToDateTimeConverter($loan->date_loan))
-            ->setReturnLoan(DateTimeZoneCustom::stringToDateTimeConverter($loan->return_loan))
-            ->setUser($this->assemblerLoanWithUser($loan->id_user))
-            ->setBooks($this->toPickUpBooksFromALoan($idLoan));
-
+        if (!$loan) {
+            throw new ResourceNotFoundException("Empréstimo", $idLoan);
+        }
+        
+        $loanEntitie = $this->assemblerLoanWithUserAndBooks($loan);
+        
         return $loanEntitie;
 
     }
@@ -122,10 +122,19 @@ class LoanRepositoryImpl implements LoanRepository
 
     public function getAllLoans(): array
     {
+        $loansEntitiesArray = array();
+
         $query = "SELECT * FROM $this->table";
         $statement = $this->connection->prepare($query);
         $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        $loans = $statement->fetchAll(PDO::FETCH_OBJ);
+
+        foreach ($loans as $loan) {
+            $loanEntitie = $this->assemblerLoanWithUserAndBooks($loan);
+            array_push($loansEntitiesArray, $loanEntitie);
+        }
+
+        return $loansEntitiesArray;
     }
 
     public function deleteLoan(int $idLoan): bool
@@ -187,6 +196,18 @@ class LoanRepositoryImpl implements LoanRepository
         return $books;
     }
 
+    private function assemblerLoanWithUserAndBooks($loan): Loan
+    {
+        $loanEntitie = new Loan();
+        $loanEntitie->setId($loan->id)
+            ->setDateLoan(DateTimeZoneCustom::stringToDateTimeConverter($loan->date_loan))
+            ->setReturnLoan(DateTimeZoneCustom::stringToDateTimeConverter($loan->return_loan))
+            ->setUser($this->assemblerLoanWithUser($loan->id_user))
+            ->setBooks($this->toPickUpBooksFromALoan($loan->id));
+
+        return $loanEntitie;
+    }
+
     public function howManyCopiesOfABookAreOnLoan(int $idBook): int
     {
         $query = "SELECT COUNT(*) AS count FROM loan_books WHERE id_book = :id_book GROUP BY id_book";
@@ -197,14 +218,12 @@ class LoanRepositoryImpl implements LoanRepository
 
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-
         if (!$result) {
             return 0;
         }
-        
+
         return (int) $result['count'];
     }
-
 
     public function howManyLoansDoesAUserHave(int $idUser): int
     {
@@ -212,13 +231,13 @@ class LoanRepositoryImpl implements LoanRepository
         $statement = $this->connection->prepare($query);
         $statement->bindParam(":id_user", $idUser, PDO::PARAM_INT);
         $statement->execute();
-        
+
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         if (!$result) {
             return 0;
         }
-        
+
         return (int) $result['count'];
     }
 }

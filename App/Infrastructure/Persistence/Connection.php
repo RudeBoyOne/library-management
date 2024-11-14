@@ -21,7 +21,7 @@ class Connection
      * Database path.
      * @var string
      */
-    private $path ;
+    private $path = '/workspaces/live_ecommerce/App/Infrastructure/Persistence/library.db';
     /**
      * PDO instance for the database connection.
      * @var PDO
@@ -37,15 +37,9 @@ class Connection
      */
     public function __construct()
     {
-        $this->path = getenv('DB_PATH');
+        // $this->path = getenv('DB_PATH');
         $dsn = "sqlite:{$this->path}";
         $this->connection = new PDO($dsn, null, null, [PDO::ATTR_PERSISTENT => true]);
-        Database::initializer($this->connection);
-
-        $initialized = $this->isDatabaseInitialized();
-        if (!$initialized) {
-            Database::initializer($this->connection);
-        }
     }
 
     /**
@@ -68,13 +62,5 @@ class Connection
     {
         self::$instance = new self();
         self::$instance->connection = $connection;
-    }
-
-    private function isDatabaseInitialized(): bool
-    {
-        $query = "SELECT COUNT(*) FROM role";
-        $statement = $this->connection->prepare($query);
-        $statement->execute();
-        $count = $statement->fetchColumn();return $count > 0;
     }
 }

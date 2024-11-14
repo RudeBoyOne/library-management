@@ -6,6 +6,7 @@ use App\Library\Domain\Entities\UserEntities\Professor;
 use App\Library\Domain\Entities\UserEntities\Student;
 use App\Library\Domain\Entities\UserEntities\User;
 use App\Library\Infrastructure\Persistence\Connection;
+use InvalidArgumentException;
 use PDO;
 
 class UserRepository
@@ -100,7 +101,7 @@ class UserRepository
 
                 return $student;
             default:
-                throw new \InvalidArgumentException("Unknown role name");
+                throw new InvalidArgumentException("Unknown role name");
         }
     }
 

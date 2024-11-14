@@ -3,7 +3,6 @@ namespace App\Library\Domain\Repositorys;
 
 use App\Library\Domain\Entities\Book;
 use App\Library\Domain\Entities\ISBN;
-use App\Library\Domain\Entities\Section;
 use App\Library\Infrastructure\Persistence\Connection;
 use PDO;
 
@@ -11,10 +10,12 @@ class BookRepository
 {
     private PDO $connection;
     private string $table = "book";
+    private SectionRepository $sectionRepository;
 
     public function __construct()
     {
         $this->connection = Connection::getInstance();
+        $this->sectionRepository = new SectionRepository($this->connection);
     }
 
     public function createBook(Book $book): bool
@@ -72,11 +73,10 @@ class BookRepository
         $isbn = new ISBN();
         $isbn->setValue($result->isbn);
 
-        $section = new Section();
-        $section->setId((int) $result->section);
+        $section = $this->sectionRepository->getSectionById($result->section);
 
         $book = new Book();
-        $book->setId((int) $result->id)
+        $book->setId($result->id)
             ->setTitle($result->title)
             ->setAuthor($result->author)
             ->setIsbn($isbn)

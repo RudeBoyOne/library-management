@@ -2,13 +2,14 @@
 namespace App\Library\Domain\Entities\UserEntities;
 
 use App\Library\Domain\Entities\UserEntities\User;
+use JsonSerializable;
 
 /**
  * Class Professor
  * 
  * Represents a professor who can make up to 3 loans
  */
-class Professor extends User
+class Professor extends User implements JsonSerializable
 {
 
     /**
@@ -31,4 +32,15 @@ class Professor extends User
         return $amountCurrentLoans <= $this->getLoanAmount();
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize(): array {
+        return [
+            "name" => $this->getName(),
+            "e-mail" => $this->getEmail(),
+            "registration" => $this->getRegistration(),
+            "type user" => $this->getRole()->getName()
+        ];
+    }
 }

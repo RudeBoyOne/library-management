@@ -1,12 +1,14 @@
 <?php
 namespace App\Library\Domain\Entities;
 
+use JsonSerializable;
+
 /**
  * Class Section
- * 
+ *
  * Represents a section in the library
-*/
-class Section
+ */
+class Section implements JsonSerializable
 {
     /**
      * Section ID
@@ -82,5 +84,15 @@ class Section
     {
         $this->description = $description;
         return $this;
+    }
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            "localizator"=> $this->getLocalizator(),
+            "description"=> $this->getDescription()
+        ];
     }
 }

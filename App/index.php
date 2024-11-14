@@ -29,7 +29,33 @@ switch ($method) {
             $loanController->create($data);
         }
 
+        break;
+
+    case 'GET':
+
+        if ($uri === '/loans') {
+            $loanController->getAll();
+        }
+
+        if (preg_match('/\/loans\/(\d+)/', $uri, $match)) {
+            $id = $match[1];
+            $loanController->getById($id);
+        }
 
         break;
 
+    case 'PUT':
+        if (preg_match('/\/loans\/(\d+)/', $uri, $match)) {
+            $id = $match[1];
+            $data = json_decode(file_get_contents('php://input'));
+            $loanController->update($id, $data);
+        }
+        break;
+
+    case 'DELETE':
+        if (preg_match('/\/loans\/(\d+)/', $uri, $match)) {
+            $id = $match[1];
+            $loanController->delete($id);
+        }
+        break;
 }

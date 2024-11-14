@@ -16,11 +16,16 @@ class DateTimeZoneCustom
         return $currentDateTime;
         
     }
-    public static function dateTimeToStringConverter(DateTime $date)
+    public static function dateTimeToStringConverter(DateTime $date): string
     {
-/*         $timezone = new DateTimeZone('America/Sao_Paulo');
-        $date = new DateTime($date, $timezone); */
         $currentDateTime = $date->format('Y-m-d H:i:s');
+        
+        return $currentDateTime;
+    }
+
+    public static function dateTimeToStringConverterWithoutSeconds(DateTime $date): string
+    {
+        $currentDateTime = $date->format('Y-m-d H:i');
         
         return $currentDateTime;
         

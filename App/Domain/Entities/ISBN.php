@@ -1,13 +1,15 @@
 <?php
 namespace App\Library\Domain\Entities;
 
+use JsonSerializable;
+
 /**
  * Class ISBN
- * 
+ *
  * Represents the ISBN code of books in the application.
  * This class is a Value Object and is immutable.
  */
-final class ISBN
+final class ISBN implements JsonSerializable
 {
     /**
      * The value of the ISBN
@@ -43,5 +45,14 @@ final class ISBN
     public function equals(ISBN $isbn): bool
     {
         return $this->value === $isbn->getValue();
+    }
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            "value"=> $this->value
+        ];
     }
 }

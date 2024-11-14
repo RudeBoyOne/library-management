@@ -2,15 +2,17 @@
 namespace App\Library\Domain\Entities;
 
 use App\Library\Domain\Entities\UserEntities\User;
+use App\Library\Util\DateTimeZoneCustom;
 use DateTime;
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * Class Loan
  *
  * Represents a book loan
  */
-class Loan
+class Loan implements JsonSerializable
 {
     /**
      * Loan ID
@@ -88,14 +90,14 @@ class Loan
     }
 
     /**
-     /**
-      * Sets the return date
-      * 
-      * Ensures that the return date is after the loan date
-      * Throws an InvalidArgumentException if the return date is not after the loan date
-      * @param DateTime $returnLoan Return date
-      * @return self
-      * @throws InvalidArgumentException if the return date is not after the loan date.
+    /**
+     * Sets the return date
+     *
+     * Ensures that the return date is after the loan date
+     * Throws an InvalidArgumentException if the return date is not after the loan date
+     * @param DateTime $returnLoan Return date
+     * @return self
+     * @throws InvalidArgumentException if the return date is not after the loan date.
      */
     public function setReturnLoan(DateTime $returnLoan): self
     {
@@ -127,31 +129,46 @@ class Loan
         return $this;
     }
 
-	/**
+    /**
      * Gets books from a loan
-	 * @return array
-	 */
-	public function getBooks(): array {
-		return $this->books;
-	}
-	
-	/**
-     * Add a book to loan
-	 * @param array $books 
-	 * @return self
-	 */
-	public function addBooks(Book $book): self {
-		$this->books[] = $book;
-		return $this;
-	}
+     * @return array
+     */
+    public function getBooks(): array
+    {
+        return $this->books;
+    }
 
-	/**
-	 * Books from a loan
-	 * @param array $books Books from a loan
-	 * @return self
-	 */
-	public function setBooks(array $books): self {
-		$this->books = $books;
-		return $this;
-	}
+    /**
+     * Add a book to loan
+     * @param array $books
+     * @return self
+     */
+    public function addBooks(Book $book): self
+    {
+        $this->books[] = $book;
+        return $this;
+    }
+
+    /**
+     * Books from a loan
+     * @param array $books Books from a loan
+     * @return self
+     */
+    public function setBooks(array $books): self
+    {
+        $this->books = $books;
+        return $this;
+    }
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            "date loan"=> DateTimeZoneCustom::dateTimeToStringConverterWithoutSeconds($this->getDateLoan()),
+            "date return loan"=> DateTimeZoneCustom::dateTimeToStringConverterWithoutSeconds($this->getReturnLoan()),
+            "user"=> $this->getUser(),
+            "books"=> $this->getBooks(),
+        ];
+    }
 }

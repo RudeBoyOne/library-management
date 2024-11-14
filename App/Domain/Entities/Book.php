@@ -3,13 +3,14 @@ namespace App\Library\Domain\Entities;
 
 use App\Library\Domain\Entities\ISBN;
 use App\Library\Domain\Entities\Section;
+use JsonSerializable;
 
 /**
  * Class Book
  *
  * Represents a book in the library
  */
-class Book
+class Book implements JsonSerializable
 {
     /**
      * Book id
@@ -142,21 +143,35 @@ class Book
         return $this;
     }
 
-	/**
-	 * Gets the Amount Of Books
-	 * @return int
-	 */
-	public function getAmountOfBooks(): int {
-		return $this->amountOfBooks;
-	}
-	
-	/**
-	 * Sets the Amount Of Books
-	 * @param int $amountOfBooks Amount Of Books
-	 * @return self
-	 */
-	public function setAmountOfBooks(int $amountOfBooks): self {
-		$this->amountOfBooks = $amountOfBooks;
-		return $this;
-	}
+    /**
+     * Gets the Amount Of Books
+     * @return int
+     */
+    public function getAmountOfBooks(): int
+    {
+        return $this->amountOfBooks;
+    }
+
+    /**
+     * Sets the Amount Of Books
+     * @param int $amountOfBooks Amount Of Books
+     * @return self
+     */
+    public function setAmountOfBooks(int $amountOfBooks): self
+    {
+        $this->amountOfBooks = $amountOfBooks;
+        return $this;
+    }
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            "title"=> $this->getTitle(),
+            "author"=> $this->getAuthor(),
+            "isbn"=> $this->getIsbn(),
+            "section"=> $this->getSection()
+        ];
+    }
 }
