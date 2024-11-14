@@ -11,4 +11,6 @@ interface LoanRepository
     public function toPickUpBooksFromALoan(int $idLoan): array;
     public function getAllLoans() : array;
     public function deleteLoan(int $idLoan): bool;
+    public function howManyCopiesOfABookAreOnLoan(int $idBook): int;
+    public function howManyLoansDoesAUserHave(int $idUser): int;
 }

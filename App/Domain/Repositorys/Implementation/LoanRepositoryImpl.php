@@ -27,6 +27,7 @@ class LoanRepositoryImpl implements LoanRepository
 
     public function createLoan(Loan $loan): bool
     {
+        
         $dateLoan = DateTimeZoneCustom::dateTimeToStringConverter($loan->getDateLoan());
         $returnLoan = DateTimeZoneCustom::dateTimeToStringConverter($loan->getReturnLoan());
         $user = $loan->getUser()->getId();
@@ -184,5 +185,40 @@ class LoanRepositoryImpl implements LoanRepository
             array_push($books, $this->bookRepository->getBookById($row['id_book']));
         }
         return $books;
+    }
+
+    public function howManyCopiesOfABookAreOnLoan(int $idBook): int
+    {
+        $query = "SELECT COUNT(*) AS count FROM loan_books WHERE id_book = :id_book GROUP BY id_book";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(":id_book", $idBook, PDO::PARAM_INT);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+        if (!$result) {
+            return 0;
+        }
+        
+        return (int) $result['count'];
+    }
+
+
+    public function howManyLoansDoesAUserHave(int $idUser): int
+    {
+        $query = "SELECT COUNT(*) AS count FROM loan WHERE id_user = :id_user GROUP BY id_user";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(":id_user", $idUser, PDO::PARAM_INT);
+        $statement->execute();
+        
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return 0;
+        }
+        
+        return (int) $result['count'];
     }
 }

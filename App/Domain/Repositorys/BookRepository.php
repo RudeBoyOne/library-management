@@ -73,10 +73,10 @@ class BookRepository
         $isbn->setValue($result->isbn);
 
         $section = new Section();
-        $section->setId((int)$result->section);
+        $section->setId((int) $result->section);
 
         $book = new Book();
-        $book->setId((int)$result->id)
+        $book->setId((int) $result->id)
             ->setTitle($result->title)
             ->setAuthor($result->author)
             ->setIsbn($isbn)

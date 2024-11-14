@@ -88,8 +88,8 @@ class UserRepository
             case 'Student':
                 $student = new Student();
                 $student->setId($idUser)
-                    ->setName($result->student_name)
-                    ->setEmail($result->student_email)
+                    ->setName($result->name)
+                    ->setEmail($result->email)
                     ->setRegistration($result->registration);
 
                 $role = new Role();
