@@ -16,7 +16,7 @@
 		"ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {
 			"setLocale": true,
 			"theme": "robbyrussell",
-			"plugins": "git docker"
+			"plugins": "git"
 		}
     },
 
