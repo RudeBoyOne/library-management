@@ -38,9 +38,9 @@ class Professor extends User implements JsonSerializable
     public function jsonSerialize(): array {
         return [
             "name" => $this->getName(),
-            "e-mail" => $this->getEmail(),
+            "email" => $this->getEmail(),
             "registration" => $this->getRegistration(),
-            "type user" => $this->getRole()->getName()
+            "type_user" => $this->getRole()->getName()
         ];
     }
 }

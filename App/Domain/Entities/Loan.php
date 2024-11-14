@@ -165,8 +165,9 @@ class Loan implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            "date loan"=> DateTimeZoneCustom::dateTimeToStringConverterWithoutSeconds($this->getDateLoan()),
-            "date return loan"=> DateTimeZoneCustom::dateTimeToStringConverterWithoutSeconds($this->getReturnLoan()),
+            "id_loan"=> $this->getId(),
+            "date_loan"=> DateTimeZoneCustom::dateTimeToStringConverterWithoutSeconds($this->getDateLoan()),
+            "date_return_loan"=> DateTimeZoneCustom::dateTimeToStringConverterWithoutSeconds($this->getReturnLoan()),
             "user"=> $this->getUser(),
             "books"=> $this->getBooks(),
         ];

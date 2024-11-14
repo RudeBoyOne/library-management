@@ -41,7 +41,7 @@ class Student extends User implements JsonSerializable
             "name" => $this->getName(),
             "e-mail" => $this->getEmail(),
             "registration" => $this->getRegistration(),
-            "type user" => $this->getRole()->getName()
+            "type_user" => $this->getRole()->getName()
         ];
     }
 }

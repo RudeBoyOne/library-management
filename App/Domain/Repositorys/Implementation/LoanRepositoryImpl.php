@@ -23,7 +23,7 @@ class LoanRepositoryImpl implements LoanRepository
     {
         $this->connection = Connection::getInstance();
         $this->userRepository = new UserRepository();
-        $this->bookRepository = new BookRepository();
+        $this->bookRepository = new BookRepositoryImpl();
     }
 
     public function createLoan(Loan $loan): bool

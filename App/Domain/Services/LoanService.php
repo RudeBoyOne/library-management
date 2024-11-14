@@ -6,6 +6,7 @@ use App\Library\Domain\Entities\UserEntities\User;
 use App\Library\Domain\Exceptions\BookNotAvailableException;
 use App\Library\Domain\Exceptions\ExceedsLoanLimitException;
 use App\Library\Domain\Repositorys\BookRepository;
+use App\Library\Domain\Repositorys\Implementation\BookRepositoryImpl;
 use App\Library\Domain\Repositorys\LoanRepository;
 use App\Library\Domain\Repositorys\UserRepository;
 use App\Library\Util\DateTimeZoneCustom;
@@ -21,7 +22,7 @@ class LoanService
     {
         $this->loanRepository = $loanRepository;
         $this->userRepository = new UserRepository();
-        $this->bookRepository = new BookRepository();
+        $this->bookRepository = new BookRepositoryImpl();
     }
 
     public function create($data): bool
