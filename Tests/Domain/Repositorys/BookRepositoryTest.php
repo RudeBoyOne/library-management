@@ -120,17 +120,17 @@ class BookRepositoryTest extends SetupTests
         $books = $this->bookRepository->getAllBooks();
 
         $this->assertCount(4, $books);
-        $this->assertEquals('Book One', $books[2]['title']);
-        $this->assertEquals('Author One', $books[2]['author']);
-        $this->assertEquals('9781234567890', $books[2]['isbn']);
-        $this->assertEquals(10, $books[2]['amount_of_books']);
-        $this->assertEquals(1, $books[2]['section']);
+        $this->assertEquals('Book One', $books[2]->getTitle());
+        $this->assertEquals('Author One', $books[2]->getAuthor());
+        $this->assertEquals('9781234567890', $books[2]->getIsbn()->getValue());
+        $this->assertEquals(10, $books[2]->getAmountOfBooks());
+        $this->assertEquals(1, $books[2]->getSection()->getId());
 
-        $this->assertEquals('Book Two', $books[3]['title']);
-        $this->assertEquals('Author Two', $books[3]['author']);
-        $this->assertEquals('9780987654321', $books[3]['isbn']);
-        $this->assertEquals(5, $books[3]['amount_of_books']);
-        $this->assertEquals(2, $books[3]['section']);
+        $this->assertEquals('Book Two', $books[3]->getTitle());
+        $this->assertEquals('Author Two', $books[3]->getAuthor());
+        $this->assertEquals('9780987654321', $books[3]->getIsbn()->getValue());
+        $this->assertEquals(5, $books[3]->getAmountOfBooks());
+        $this->assertEquals(2, $books[3]->getSection()->getId());
     }
 
     public function testDeleteBook(): void

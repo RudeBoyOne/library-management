@@ -37,7 +37,7 @@ class LoanServiceTest extends SetupTests
 
     public function testCreateProfessorExceedingLoanLimit()
     {
-        $data = (object) ['user' => 1, 'books' => [1, 2], 'dateLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-01 10:00:00'), 'returnLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-15 10:00:00')];
+        $data = (object) ['user' => 1, 'books' => [1, 2], 'dateLoan' => '2024-11-01 10:00:00', 'returnLoan' => '2024-11-15 10:00:00'];
 
         $role = $this->createMock(Role::class);
         $role->method('getName')->willReturn('Professor');
@@ -54,7 +54,7 @@ class LoanServiceTest extends SetupTests
 
     public function testCreateStudentExceedingLoanLimit()
     {
-        $data = (object) ['user' => 2, 'books' => [1, 2], 'dateLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-01 10:00:00'), 'returnLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-15 10:00:00')];
+        $data = (object) ['user' => 2, 'books' => [1, 2], 'dateLoan' => '2024-11-01 10:00:00', 'returnLoan' => '2024-11-15 10:00:00'];
 
         $role = $this->createMock(Role::class);
         $role->method('getName')->willReturn('Student');
@@ -71,7 +71,7 @@ class LoanServiceTest extends SetupTests
 
     public function testCreateBookNotAvailable()
     {
-        $data = (object) ['user' => 1, 'books' => [1], 'dateLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-01 10:00:00'), 'returnLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-15 10:00:00')];
+        $data = (object) ['user' => 1, 'books' => [1], 'dateLoan' => '2024-11-01 10:00:00', 'returnLoan' => '2024-11-15 10:00:00'];
 
         $book = $this->createMock(Book::class);
         $book->method('getId')->willReturn(1);
@@ -86,7 +86,7 @@ class LoanServiceTest extends SetupTests
 
     public function testCreateSuccessful()
     {
-        $data = (object) ['user' => 1, 'books' => [1, 2], 'dateLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-01 10:00:00'), 'returnLoan' => DateTimeZoneCustom::stringToDateTimeConverter('2024-11-15 10:00:00')];
+        $data = (object) ['user' => 1, 'books' => [1, 2], 'dateLoan' => '2024-11-01 10:00:00', 'returnLoan' => '2024-11-15 10:00:00'];
 
         $role = $this->createMock(Role::class);
         $role->method('getName')->willReturn('Professor');
