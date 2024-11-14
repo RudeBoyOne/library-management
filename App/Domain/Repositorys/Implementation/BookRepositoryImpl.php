@@ -3,6 +3,8 @@ namespace App\Library\Domain\Repositorys\Implementation;
 
 use App\Library\Domain\Entities\Book;
 use App\Library\Domain\Entities\ISBN;
+use App\Library\Domain\Entities\Section;
+use App\Library\Domain\Exceptions\ResourceNotFoundException;
 use App\Library\Domain\Repositorys\BookRepository;
 use App\Library\Domain\Repositorys\SectionRepository;
 use App\Library\Infrastructure\Persistence\Connection;
@@ -17,7 +19,7 @@ class BookRepositoryImpl implements BookRepository
     public function __construct()
     {
         $this->connection = Connection::getInstance();
-        $this->sectionRepository = new SectionRepository($this->connection);
+        $this->sectionRepository = new SectionRepositoryImpl();
     }
 
     public function createBook(Book $book): bool
@@ -70,31 +72,32 @@ class BookRepositoryImpl implements BookRepository
         $statement->bindParam(":id", $idBook, PDO::PARAM_INT);
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_OBJ);
+        $book = $statement->fetch(PDO::FETCH_OBJ);
 
-        $isbn = new ISBN();
-        $isbn->setValue($result->isbn);
+        if (!$book) {
+            throw new ResourceNotFoundException("Book", $idBook);
+        }
 
-        $section = $this->sectionRepository->getSectionById($result->section);
+        $bookEntitie = $this->assemblerBookWithSectionAndIsbn($book);
 
-        $book = new Book();
-        $book->setId($result->id)
-            ->setTitle($result->title)
-            ->setAuthor($result->author)
-            ->setIsbn($isbn)
-            ->setAmountOfBooks($result->amount_of_books)
-            ->setSection($section);
-
-        return $book;
+        return $bookEntitie;
     }
 
     public function getAllBooks(): array
     {
+        $books = array();
+
         $query = "SELECT * FROM $this->table";
         $statement = $this->connection->prepare($query);
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        $resultBooks = $statement->fetchAll(PDO::FETCH_OBJ);
+
+        foreach ($resultBooks as $book) {
+            array_push($books, $this->assemblerBookWithSectionAndIsbn($book));
+        }
+
+        return $books;
     }
 
     public function deleteBook(int $idBook): bool
@@ -105,5 +108,21 @@ class BookRepositoryImpl implements BookRepository
         $statement->bindParam(":id", $idBook, PDO::PARAM_INT);
 
         return $statement->execute();
+    }
+
+    private function assemblerBookWithSectionAndIsbn($dataBook): Book
+    {
+        $isbn = new ISBN();
+        $isbn->setValue($dataBook->isbn);
+
+        $section = $this->sectionRepository->getSectionById($dataBook->section);
+
+        $bookEntitie = new Book();
+        return $bookEntitie->setId($dataBook->id)
+            ->setTitle($dataBook->title)
+            ->setAuthor($dataBook->author)
+            ->setIsbn($isbn)
+            ->setAmountOfBooks($dataBook->amount_of_books)
+            ->setSection($section);
     }
 }

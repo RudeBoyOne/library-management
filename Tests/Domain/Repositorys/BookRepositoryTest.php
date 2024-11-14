@@ -5,6 +5,7 @@ use App\Library\Domain\Entities\Book;
 use App\Library\Domain\Entities\ISBN;
 use App\Library\Domain\Entities\Section;
 use App\Library\Domain\Repositorys\BookRepository;
+use App\Library\Domain\Repositorys\Implementation\BookRepositoryImpl;
 use PDO;
 use Tests\SetupTests;
 
@@ -17,7 +18,7 @@ class BookRepositoryTest extends SetupTests
     {
         parent::setUp();
 
-        $this->bookRepository = new BookRepository();
+        $this->bookRepository = new BookRepositoryImpl();
 
         $this->insertSampleData();
     }

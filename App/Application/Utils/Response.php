@@ -5,7 +5,13 @@ class Response
 {
     public static function json($data, int $status = 200, array $headers = [], int $options = 0): void
     {
-        http_response_code($status);foreach ($headers as $header => $value) {header("{$header}: {$value}");}header('Content-Type: application/json');
+        http_response_code($status);
+
+        foreach ($headers as $header => $value) {
+            header("{$header}: {$value}");
+        }
+
+        header('Content-Type: application/json');
         echo json_encode($data, $options);
         exit;
     }
