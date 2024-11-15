@@ -33,9 +33,22 @@ app/library/
 6. ✅ **Test Coverage**
 ![Tests Coverage](documentation/testsCoverage.png)
 
+#### para mais detalhes sobre a cobertura dos testes  👇🏼
+ 6.1. ir para diretório coverageTests
+ ``` shell
+ cd coverageTests
+ ```
+ 6.2 subir o servidor utilizando o PHP
+ ```shell
+ php -S localhost:8000
+ ```
+ 6.3 acessar via browser todos os detalhes sobre a cobertura dos testes
+ [http://localhost:8080](http://localhost:8080)
+
 7. ✅ **sintaxe PSR-2**
-7. ✅ **Documentação**
-[Code Documentation]()
+8. ✅ **Documentação**
+
+[Code Documentation](https://rudeboyone.github.io/library-management/)
 
 ### Como executar o projeto
 
@@ -43,17 +56,29 @@ app/library/
 
 1. cloar o repositório
  ```
-git clone https://github.com/
+git clone https://github.com/RudeBoyOne/library-management.git
 ```
 
-2. execute o comando para popular o banco de dados
+2. entre no diretório do projeto
+```shell
+cd library-management
 ```
+
+3. execute o comando para popular o banco de dados
+```shell
 php App/Infrastructure/Persistence/Database/initialize_db.php
+```
+
+4. entrar no diretório App e subir o servidor utilizando o PHP
+```shell
+cd App
+
+php -S localhost:8080
 ```
 
 3. Import no postman o arquivo da collection com todas as requisições http para testar o sistema
 
-- como importa:
+como importa:
 
 [Documentação postman, como importar uma collection](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/)
 
