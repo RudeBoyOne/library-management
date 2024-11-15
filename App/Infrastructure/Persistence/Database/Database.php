@@ -3,9 +3,20 @@ namespace App\Library\Infrastructure\Persistence\Database;
 
 use PDO;
 
+/**
+ * Class Database
+ * 
+ * Provides utility functions for initializing the database with test data. 
+ */
 class Database
 {
 
+    /**
+     * Initializes the database with predefined test data.
+     * 
+     * @param PDO $connection The PDO connection to the database.
+     * @return void 
+     */
     public static function initializer(PDO $connection)
     {
         $connection->exec(" INSERT INTO role (name) VALUES ('Professor'), ('Student'); ");

@@ -11,20 +11,26 @@ use App\Library\Domain\Services\BookService;
 use App\Library\Domain\Services\LoanService;
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(dirname(__DIR__));
-$dotenv->load();
+/**
+ * Initializes and dispatches HTTP requests to the appropriate controllers. 
+ */
 
+ // Set the content type to JSON
 header('Content-Type: application/json');
 
+// Instantiate the repositories, services, and controllers
 $loanRepository = new LoanRepositoryImpl();
 $loanService = new LoanService($loanRepository);
 $loanController = new LoanController($loanService);
 $bookRepository = new BookRepositoryImpl();
 $bookService = new BookService($bookRepository);
 $bookController = new BookController($bookService);
+
+// Get the request method and URI
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
+// Dispatch the request based on the method and URI
 switch ($method) {
 
     case 'POST':
