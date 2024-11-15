@@ -28,8 +28,5 @@
         "test-domain": "vendor/bin/phpunit --testsuite 'Domain Tests' --display-deprecations --display-notices", 
         "test-infra": "vendor/bin/phpunit --testsuite 'Infrastructure Tests'", 
         "generate-docs": "/workspaces/live_ecommerce/documentation/tools/phpdocumentor -d /workspaces/live_ecommerce/App -t /workspaces/live_ecommerce/documentation/docs-api"
-    },
-    "require": {
-        "vlucas/phpdotenv": "^5.6"
     }
 }
