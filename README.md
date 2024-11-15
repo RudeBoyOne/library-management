@@ -9,9 +9,9 @@ MyLibrary é um sistema de gerenciamento de bibliotecas faz a gestão de livros,
 
 1. ✅ **Classes e Objetos**
 2. ✅ **Encapsulamento**
-3. ✅ **Herança e Polimorfismo**
+3. ✅ **Herança e Polimorfismo**  
   3.1 Classe abstrata `User` herdada por `Student` e `Professor` para tratamento diferenciado. - **Student**: Pode fazer um empréstimo por vez. - **Professor**: Pode fazer até 3 empréstimos por vez.
-4. ✅ **DDD (Domain-Driven Design)**:
+4. ✅ **DDD (Domain-Driven Design)**  
 ```
 app/library/
 ├── App/
@@ -30,25 +30,25 @@ app/library/
 ```
 
 5. ✅ **Persistência**
-6. ✅ **Test Coverage**
+6. ✅ **Test Coverage**  
 ![Tests Coverage](documentation/testsCoverage.png)
 
 #### para mais detalhes sobre a cobertura dos testes  👇🏼
- 6.1. ir para diretório coverageTests
- ``` shell
- cd coverageTests
- ```
- 6.2 subir o servidor utilizando o PHP
- ```shell
- php -S localhost:8000
- ```
- 6.3 acessar via browser todos os detalhes sobre a cobertura dos testes
- [http://localhost:8080](http://localhost:8080)
+  - 6.1. ir para diretório coverageTests
+  ``` shell
+  cd coverageTests
+  ```
+  - 6.2 subir o servidor utilizando o PHP
+  ```shell
+  php -S localhost:8000
+  ```
+  - 6.3 acessar via browser todos os detalhes sobre a cobertura dos testes  
+    [http://localhost:8080](http://localhost:8080)
 
 7. ✅ **sintaxe PSR-2**
 8. ✅ **Documentação**
 
-[Code Documentation](https://rudeboyone.github.io/library-management/)
+    [Code Documentation](https://rudeboyone.github.io/library-management/)
 
 ### Como executar o projeto
 
@@ -78,11 +78,11 @@ php -S localhost:8080
 
 3. Import no postman o arquivo da collection com todas as requisições http para testar o sistema
 
-como importa:
+    como importar:
 
-[Documentação postman, como importar uma collection](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/)
+      - [Documentação postman, como importar uma collection](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/)
 
-[Arquivo Collection](<documentation/Teste - Live e-Commerce.postman_collection.json>)
+      - [Arquivo Collection](<documentation/Teste - Live e-Commerce.postman_collection.json>)
 
 4. Selecione a opção "Run collection"
 
