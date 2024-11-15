@@ -61,7 +61,8 @@ git clone https://github.com/RudeBoyOne/library-management.git
 
 2. entre no diretório do projeto
 ```shell
-cd library-management \
+cd library-management
+
 composer install
 ```
 
@@ -72,7 +73,7 @@ php App/Infrastructure/Persistence/Database/initialize_db.php
 
 4. entrar no diretório App e subir o servidor utilizando o PHP
 ```shell
-cd App \
+cd App 
 
 php -S localhost:8080
 ```
@@ -85,6 +86,6 @@ php -S localhost:8080
 
       - [Arquivo Collection](<documentation/Teste - Live e-Commerce.postman_collection.json>)
 
-4. Selecione a opção "Run collection"
+4. Realizar as requisições para os endpoints dos recursos
 
-![Image example Run Collection Postman](documentation/runCollection.png)
+![Image example Run Collection Postman](documentation/requests.png)
