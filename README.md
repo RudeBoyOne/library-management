@@ -50,7 +50,7 @@ app/library/
 
     [Code Documentation](https://rudeboyone.github.io/library-management/)
 
-### Como executar o projeto
+
 
 > Dependências: php 8.3 e sqlite 3
 
@@ -61,7 +61,8 @@ git clone https://github.com/RudeBoyOne/library-management.git
 
 2. entre no diretório do projeto
 ```shell
-cd library-management
+cd library-management \
+composer install
 ```
 
 3. execute o comando para popular o banco de dados
@@ -71,7 +72,7 @@ php App/Infrastructure/Persistence/Database/initialize_db.php
 
 4. entrar no diretório App e subir o servidor utilizando o PHP
 ```shell
-cd App
+cd App \
 
 php -S localhost:8080
 ```
