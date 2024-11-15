@@ -21,7 +21,7 @@ class Connection
      * Database path.
      * @var string
      */
-    private $path = '/workspaces/live_ecommerce/App/Infrastructure/Persistence/library.db';
+    private $path = __DIR__ . '/library.db';
     /**
      * PDO instance for the database connection.
      * @var PDO
