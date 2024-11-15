@@ -43,7 +43,7 @@ app/library/
   php -S localhost:8000
   ```
   - 6.3 acessar via browser todos os detalhes sobre a cobertura dos testes  
-    [http://localhost:8080](http://localhost:8080)
+    [http://localhost:8000](http://localhost:8000)
 
 7. ✅ **sintaxe PSR-2**
 8. ✅ **Documentação**
