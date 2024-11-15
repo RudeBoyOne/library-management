@@ -2,27 +2,41 @@
 namespace Tests\Domain\Repositorys;
 
 use App\Library\Domain\Entities\Role;
+use App\Library\Domain\Entities\UserEntities\Professor;
 use App\Library\Domain\Entities\UserEntities\User;
 use App\Library\Domain\Repositorys\UserRepository;
 use App\Library\Infrastructure\Persistence\Connection;
 use PDO;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Metadata\Covers;
 use Tests\SetupTests;
 
+#[CoversClass(UserRepository::class)]
+#[CoversClass(User::class)]
+#[CoversClass(Professor::class)]
+#[CoversClass(Role::class)]
+#[CoversClass(Connection::class)]
 class UserRepositoryTest extends SetupTests
 {
     private UserRepository $userRepository;
     private string $table = 'user';
-
+    
     protected function setUp(): void
     {
         parent::setUp();
-
+        
         $this->userRepository = new UserRepository();
 
         $this->insertSampleData();
     }
-
+    
+    #[Covers('UserRepository::createUser')] 
+    #[Covers('Role::getId')] 
+    #[Covers('User::getName')] 
+    #[Covers('User::getEmail')] 
+    #[Covers('User::getRegistration')] 
+    #[Covers('User::getRole')]
     public function testCreateUser(): void
     {
         $role = $this->createMock(Role::class);
@@ -45,7 +59,14 @@ class UserRepositoryTest extends SetupTests
         $this->assertEquals('123456', $result['registration']);
         $this->assertEquals(1, $result['role']);
     }
-
+    
+    #[Covers('UserRepository::createUser')] 
+    #[Covers('UserRepository::updateUser')] 
+    #[Covers('Role::getId')] 
+    #[Covers('User::getName')] 
+    #[Covers('User::getEmail')] 
+    #[Covers('User::getRegistration')] 
+    #[Covers('User::getRole')]
     public function testUpdateUser(): void
     {
         $initialRole = $this->createMock(Role::class);
@@ -81,7 +102,14 @@ class UserRepositoryTest extends SetupTests
         $this->assertEquals('654321', $result['registration']);
         $this->assertEquals(2, $result['role']);
     }
-
+    
+    #[Covers('UserRepository::createUser')] 
+    #[Covers('UserRepository::getUserById')] 
+    #[Covers('Role::getId')] 
+    #[Covers('User::getName')] 
+    #[Covers('User::getEmail')] 
+    #[Covers('User::getRegistration')] 
+    #[Covers('User::getRole')]
     public function testGetUserById(): void
     {
         $initialRole = $this->createMock(Role::class);
@@ -107,28 +135,35 @@ class UserRepositoryTest extends SetupTests
         $this->assertEquals(1, $user->getRole()->getId());
     }
 
+    #[Covers('UserRepository::createUser')] 
+    #[Covers('UserRepository::getAllUsers')] 
+    #[Covers('Role::getId')] 
+    #[Covers('User::getName')] 
+    #[Covers('User::getEmail')] 
+    #[Covers('User::getRegistration')] 
+    #[Covers('User::getRole')]
     public function testGetAllUsers(): void
     {
         $firstRole = $this->createMock(Role::class);
         $firstRole->method('getId')->willReturn(1);
-
+        
         $firstUser = $this->createMock(User::class);
         $firstUser->method('getName')->willReturn('Professor User');
         $firstUser->method('getEmail')->willReturn('professor@example.com');
         $firstUser->method('getRegistration')->willReturn('123456');
         $firstUser->method('getRole')->willReturn($firstRole);
-
+        
         $this->assertTrue($this->userRepository->createUser($firstUser));
 
         $secondRole = $this->createMock(Role::class);
         $secondRole->method('getId')->willReturn(2);
-
+        
         $secondUser = $this->createMock(User::class);
         $secondUser->method('getName')->willReturn('Student User');
         $secondUser->method('getEmail')->willReturn('student@example.com');
         $secondUser->method('getRegistration')->willReturn('654321');
         $secondUser->method('getRole')->willReturn($secondRole);
-
+        
         $this->assertTrue($this->userRepository->createUser($secondUser));
 
         $users = $this->userRepository->getAllUsers();
@@ -138,18 +173,25 @@ class UserRepositoryTest extends SetupTests
         $this->assertEquals('professor@example.com', $users[0]['email']);
         $this->assertEquals('123456', $users[0]['registration']);
         $this->assertEquals(1, $users[0]['role']);
-
+        
         $this->assertEquals('Student User', $users[1]['name']);
         $this->assertEquals('student@example.com', $users[1]['email']);
         $this->assertEquals('654321', $users[1]['registration']);
         $this->assertEquals(2, $users[1]['role']);
     }
-
+    
+    #[Covers('UserRepository::createUser')] 
+    #[Covers('UserRepository::deleteUser')] 
+    #[Covers('Role::getId')] 
+    #[Covers('User::getName')] 
+    #[Covers('User::getEmail')] 
+    #[Covers('User::getRegistration')] 
+    #[Covers('User::getRole')]
     public function testDeleteUser()
     {
         $role = $this->createMock(Role::class);
         $role->method('getId')->willReturn(1);
-
+        
         $user = $this->createMock(User::class);
         $user->method('getName')->willReturn('Professor User');
         $user->method('getEmail')->willReturn('professor@example.com');

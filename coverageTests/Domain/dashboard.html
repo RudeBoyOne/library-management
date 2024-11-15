@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /workspaces/live_ecommerce/App/Domain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=11.0.7" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css?v=11.0.7" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=11.0.7" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/workspaces/live_ecommerce/App</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Domain</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Exceptions/BookNotAvailableException.php.html#6">App\Library\Domain\Exceptions\BookNotAvailableException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exceptions/ExceedsLoanLimitException.php.html#6">App\Library\Domain\Exceptions\ExceedsLoanLimitException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exceptions/ResourceNotFoundException.php.html#6">App\Library\Domain\Exceptions\ResourceNotFoundException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entities/UserEntities/Professor.php.html#12">App\Library\Domain\Entities\UserEntities\Professor</a></td><td class="text-right">25%</td></tr>
+       <tr><td><a href="Entities/UserEntities/Student.php.html#12">App\Library\Domain\Entities\UserEntities\Student</a></td><td class="text-right">25%</td></tr>
+       <tr><td><a href="Entities/Section.php.html#11">App\Library\Domain\Entities\Section</a></td><td class="text-right">53%</td></tr>
+       <tr><td><a href="Entities/ISBN.php.html#12">App\Library\Domain\Entities\ISBN</a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="Entities/Loan.php.html#15">App\Library\Domain\Entities\Loan</a></td><td class="text-right">65%</td></tr>
+       <tr><td><a href="Entities/Role.php.html#11">App\Library\Domain\Entities\Role</a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Entities/Book.php.html#13">App\Library\Domain\Entities\Book</a></td><td class="text-right">72%</td></tr>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#14">App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl</a></td><td class="text-right">85%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#14">App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl</a></td><td class="text-right">24</td></tr>
+       <tr><td><a href="Entities/Loan.php.html#15">App\Library\Domain\Entities\Loan</a></td><td class="text-right">20</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Entities/Book.php.html#168"><abbr title="App\Library\Domain\Entities\Book::jsonSerialize">jsonSerialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entities/ISBN.php.html#52"><abbr title="App\Library\Domain\Entities\ISBN::jsonSerialize">jsonSerialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entities/Loan.php.html#146"><abbr title="App\Library\Domain\Entities\Loan::addBooks">addBooks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entities/Loan.php.html#165"><abbr title="App\Library\Domain\Entities\Loan::jsonSerialize">jsonSerialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entities/Role.php.html#66"><abbr title="App\Library\Domain\Entities\Role::jsonSerialize">jsonSerialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entities/Section.php.html#53"><abbr title="App\Library\Domain\Entities\Section::getLocalizator">getLocalizator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entities/Section.php.html#73"><abbr title="App\Library\Domain\Entities\Section::getDescription">getDescription</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entities/Section.php.html#91"><abbr title="App\Library\Domain\Entities\Section::jsonSerialize">jsonSerialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entities/UserEntities/Professor.php.html#38"><abbr title="App\Library\Domain\Entities\UserEntities\Professor::jsonSerialize">jsonSerialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entities/UserEntities/Student.php.html#38"><abbr title="App\Library\Domain\Entities\UserEntities\Student::jsonSerialize">jsonSerialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exceptions/BookNotAvailableException.php.html#8"><abbr title="App\Library\Domain\Exceptions\BookNotAvailableException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exceptions/BookNotAvailableException.php.html#13"><abbr title="App\Library\Domain\Exceptions\BookNotAvailableException::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exceptions/ExceedsLoanLimitException.php.html#8"><abbr title="App\Library\Domain\Exceptions\ExceedsLoanLimitException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exceptions/ExceedsLoanLimitException.php.html#13"><abbr title="App\Library\Domain\Exceptions\ExceedsLoanLimitException::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exceptions/ResourceNotFoundException.php.html#8"><abbr title="App\Library\Domain\Exceptions\ResourceNotFoundException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exceptions/ResourceNotFoundException.php.html#13"><abbr title="App\Library\Domain\Exceptions\ResourceNotFoundException::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#123"><abbr title="App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl::getAllLoans">getAllLoans</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/LoanService.php.html#77"><abbr title="App\Library\Domain\Services\LoanService::userTypeChecker">userTypeChecker</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#140"><abbr title="App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl::deleteLoan">deleteLoan</abbr></a></td><td class="text-right">76%</td></tr>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#29"><abbr title="App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl::createLoan">createLoan</abbr></a></td><td class="text-right">87%</td></tr>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#60"><abbr title="App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl::updateLoan">updateLoan</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Repositorys/Implementation/BookRepositoryImpl.php.html#68"><abbr title="App\Library\Domain\Repositorys\Implementation\BookRepositoryImpl::getBookById">getBookById</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#92"><abbr title="App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl::getLoanById">getLoanById</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Services/LoanService.php.html#110"><abbr title="App\Library\Domain\Services\LoanService::assemblerArrayBookEntities">assemblerArrayBookEntities</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#123"><abbr title="App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl::getAllLoans">getAllLoans</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Services/LoanService.php.html#77"><abbr title="App\Library\Domain\Services\LoanService::userTypeChecker">userTypeChecker</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Services/LoanService.php.html#110"><abbr title="App\Library\Domain\Services\LoanService::assemblerArrayBookEntities">assemblerArrayBookEntities</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#140"><abbr title="App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl::deleteLoan">deleteLoan</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Repositorys/Implementation/BookRepositoryImpl.php.html#68"><abbr title="App\Library\Domain\Repositorys\Implementation\BookRepositoryImpl::getBookById">getBookById</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#29"><abbr title="App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl::createLoan">createLoan</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#60"><abbr title="App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl::updateLoan">updateLoan</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Repositorys/Implementation/LoanRepositoryImpl.php.html#92"><abbr title="App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl::getLoanById">getLoanById</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 11.0.7</a> using <a href="https://www.php.net/" target="_top">PHP 8.3.6</a> and <a href="https://phpunit.de/">PHPUnit 11.4.3</a> at Fri Nov 15 2:09:04 UTC 2024.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js?v=11.0.7" type="text/javascript"></script>
+  <script src="../_js/d3.min.js?v=11.0.7" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js?v=11.0.7" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([3,0,0,2,0,0,2,2,1,1,3,4], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([17,0,0,0,0,0,0,0,2,5,1,89], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[72,13,"<a href=\"Entities\/Book.php.html#13\">App\\Library\\Domain\\Entities\\Book<\/a>"],[57.14285714285714,4,"<a href=\"Entities\/ISBN.php.html#12\">App\\Library\\Domain\\Entities\\ISBN<\/a>"],[65.38461538461539,13,"<a href=\"Entities\/Loan.php.html#15\">App\\Library\\Domain\\Entities\\Loan<\/a>"],[66.66666666666666,5,"<a href=\"Entities\/Role.php.html#11\">App\\Library\\Domain\\Entities\\Role<\/a>"],[53.84615384615385,7,"<a href=\"Entities\/Section.php.html#11\">App\\Library\\Domain\\Entities\\Section<\/a>"],[25,3,"<a href=\"Entities\/UserEntities\/Professor.php.html#12\">App\\Library\\Domain\\Entities\\UserEntities\\Professor<\/a>"],[25,3,"<a href=\"Entities\/UserEntities\/Student.php.html#12\">App\\Library\\Domain\\Entities\\UserEntities\\Student<\/a>"],[100,12,"<a href=\"Entities\/UserEntities\/User.php.html#11\">App\\Library\\Domain\\Entities\\UserEntities\\User<\/a>"],[0,2,"<a href=\"Exceptions\/BookNotAvailableException.php.html#6\">App\\Library\\Domain\\Exceptions\\BookNotAvailableException<\/a>"],[0,2,"<a href=\"Exceptions\/ExceedsLoanLimitException.php.html#6\">App\\Library\\Domain\\Exceptions\\ExceedsLoanLimitException<\/a>"],[0,2,"<a href=\"Exceptions\/ResourceNotFoundException.php.html#6\">App\\Library\\Domain\\Exceptions\\ResourceNotFoundException<\/a>"],[98.36065573770492,9,"<a href=\"Repositorys\/Implementation\/BookRepositoryImpl.php.html#13\">App\\Library\\Domain\\Repositorys\\Implementation\\BookRepositoryImpl<\/a>"],[85.08771929824562,23,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#14\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl<\/a>"],[100,3,"<a href=\"Repositorys\/Implementation\/SectionRepositoryImpl.php.html#9\">App\\Library\\Domain\\Repositorys\\Implementation\\SectionRepositoryImpl<\/a>"],[96.875,10,"<a href=\"Repositorys\/UserRepository.php.html#12\">App\\Library\\Domain\\Repositorys\\UserRepository<\/a>"],[100,7,"<a href=\"Services\/BookService.php.html#10\">App\\Library\\Domain\\Services\\BookService<\/a>"],[93.18181818181817,15,"<a href=\"Services\/LoanService.php.html#14\">App\\Library\\Domain\\Services\\LoanService<\/a>"],[100,2,"<a href=\"Services\/SectionService.php.html#7\">App\\Library\\Domain\\Services\\SectionService<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Entities\/Book.php.html#50\">App\\Library\\Domain\\Entities\\Book::getId<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#60\">App\\Library\\Domain\\Entities\\Book::setId<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#70\">App\\Library\\Domain\\Entities\\Book::getTitle<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#80\">App\\Library\\Domain\\Entities\\Book::setTitle<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#90\">App\\Library\\Domain\\Entities\\Book::getAuthor<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#100\">App\\Library\\Domain\\Entities\\Book::setAuthor<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#110\">App\\Library\\Domain\\Entities\\Book::getIsbn<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#120\">App\\Library\\Domain\\Entities\\Book::setIsbn<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#130\">App\\Library\\Domain\\Entities\\Book::getSection<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#140\">App\\Library\\Domain\\Entities\\Book::setSection<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#150\">App\\Library\\Domain\\Entities\\Book::getAmountOfBooks<\/a>"],[100,1,"<a href=\"Entities\/Book.php.html#160\">App\\Library\\Domain\\Entities\\Book::setAmountOfBooks<\/a>"],[0,1,"<a href=\"Entities\/Book.php.html#168\">App\\Library\\Domain\\Entities\\Book::jsonSerialize<\/a>"],[100,1,"<a href=\"Entities\/ISBN.php.html#24\">App\\Library\\Domain\\Entities\\ISBN::getValue<\/a>"],[100,1,"<a href=\"Entities\/ISBN.php.html#34\">App\\Library\\Domain\\Entities\\ISBN::setValue<\/a>"],[100,1,"<a href=\"Entities\/ISBN.php.html#45\">App\\Library\\Domain\\Entities\\ISBN::equals<\/a>"],[0,1,"<a href=\"Entities\/ISBN.php.html#52\">App\\Library\\Domain\\Entities\\ISBN::jsonSerialize<\/a>"],[100,1,"<a href=\"Entities\/Loan.php.html#47\">App\\Library\\Domain\\Entities\\Loan::getId<\/a>"],[100,1,"<a href=\"Entities\/Loan.php.html#57\">App\\Library\\Domain\\Entities\\Loan::setId<\/a>"],[100,1,"<a href=\"Entities\/Loan.php.html#67\">App\\Library\\Domain\\Entities\\Loan::getDateLoan<\/a>"],[100,1,"<a href=\"Entities\/Loan.php.html#77\">App\\Library\\Domain\\Entities\\Loan::setDateLoan<\/a>"],[100,1,"<a href=\"Entities\/Loan.php.html#87\">App\\Library\\Domain\\Entities\\Loan::getReturnLoan<\/a>"],[100,2,"<a href=\"Entities\/Loan.php.html#102\">App\\Library\\Domain\\Entities\\Loan::setReturnLoan<\/a>"],[100,1,"<a href=\"Entities\/Loan.php.html#116\">App\\Library\\Domain\\Entities\\Loan::getUser<\/a>"],[100,1,"<a href=\"Entities\/Loan.php.html#126\">App\\Library\\Domain\\Entities\\Loan::setUser<\/a>"],[100,1,"<a href=\"Entities\/Loan.php.html#136\">App\\Library\\Domain\\Entities\\Loan::getBooks<\/a>"],[0,1,"<a href=\"Entities\/Loan.php.html#146\">App\\Library\\Domain\\Entities\\Loan::addBooks<\/a>"],[100,1,"<a href=\"Entities\/Loan.php.html#157\">App\\Library\\Domain\\Entities\\Loan::setBooks<\/a>"],[0,1,"<a href=\"Entities\/Loan.php.html#165\">App\\Library\\Domain\\Entities\\Loan::jsonSerialize<\/a>"],[100,1,"<a href=\"Entities\/Role.php.html#28\">App\\Library\\Domain\\Entities\\Role::getId<\/a>"],[100,1,"<a href=\"Entities\/Role.php.html#38\">App\\Library\\Domain\\Entities\\Role::setId<\/a>"],[100,1,"<a href=\"Entities\/Role.php.html#48\">App\\Library\\Domain\\Entities\\Role::getName<\/a>"],[100,1,"<a href=\"Entities\/Role.php.html#58\">App\\Library\\Domain\\Entities\\Role::setName<\/a>"],[0,1,"<a href=\"Entities\/Role.php.html#66\">App\\Library\\Domain\\Entities\\Role::jsonSerialize<\/a>"],[100,1,"<a href=\"Entities\/Section.php.html#33\">App\\Library\\Domain\\Entities\\Section::getId<\/a>"],[100,1,"<a href=\"Entities\/Section.php.html#43\">App\\Library\\Domain\\Entities\\Section::setId<\/a>"],[0,1,"<a href=\"Entities\/Section.php.html#53\">App\\Library\\Domain\\Entities\\Section::getLocalizator<\/a>"],[100,1,"<a href=\"Entities\/Section.php.html#63\">App\\Library\\Domain\\Entities\\Section::setLocalizator<\/a>"],[0,1,"<a href=\"Entities\/Section.php.html#73\">App\\Library\\Domain\\Entities\\Section::getDescription<\/a>"],[100,1,"<a href=\"Entities\/Section.php.html#83\">App\\Library\\Domain\\Entities\\Section::setDescription<\/a>"],[0,1,"<a href=\"Entities\/Section.php.html#91\">App\\Library\\Domain\\Entities\\Section::jsonSerialize<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/Professor.php.html#20\">App\\Library\\Domain\\Entities\\UserEntities\\Professor::__construct<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/Professor.php.html#30\">App\\Library\\Domain\\Entities\\UserEntities\\Professor::canTakeOutMoreLoans<\/a>"],[0,1,"<a href=\"Entities\/UserEntities\/Professor.php.html#38\">App\\Library\\Domain\\Entities\\UserEntities\\Professor::jsonSerialize<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/Student.php.html#20\">App\\Library\\Domain\\Entities\\UserEntities\\Student::__construct<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/Student.php.html#30\">App\\Library\\Domain\\Entities\\UserEntities\\Student::canTakeOutMoreLoans<\/a>"],[0,1,"<a href=\"Entities\/UserEntities\/Student.php.html#38\">App\\Library\\Domain\\Entities\\UserEntities\\Student::jsonSerialize<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#48\">App\\Library\\Domain\\Entities\\UserEntities\\User::getId<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#58\">App\\Library\\Domain\\Entities\\UserEntities\\User::setId<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#68\">App\\Library\\Domain\\Entities\\UserEntities\\User::getName<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#78\">App\\Library\\Domain\\Entities\\UserEntities\\User::setName<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#88\">App\\Library\\Domain\\Entities\\UserEntities\\User::getEmail<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#98\">App\\Library\\Domain\\Entities\\UserEntities\\User::setEmail<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#108\">App\\Library\\Domain\\Entities\\UserEntities\\User::getRegistration<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#118\">App\\Library\\Domain\\Entities\\UserEntities\\User::setRegistration<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#128\">App\\Library\\Domain\\Entities\\UserEntities\\User::getRole<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#138\">App\\Library\\Domain\\Entities\\UserEntities\\User::setRole<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#148\">App\\Library\\Domain\\Entities\\UserEntities\\User::getLoanAmount<\/a>"],[100,1,"<a href=\"Entities\/UserEntities\/User.php.html#158\">App\\Library\\Domain\\Entities\\UserEntities\\User::setLoanAmount<\/a>"],[100,0,"<a href=\"Entities\/UserEntities\/User.php.html#169\">App\\Library\\Domain\\Entities\\UserEntities\\User::canTakeOutMoreLoans<\/a>"],[0,1,"<a href=\"Exceptions\/BookNotAvailableException.php.html#8\">App\\Library\\Domain\\Exceptions\\BookNotAvailableException::__construct<\/a>"],[0,1,"<a href=\"Exceptions\/BookNotAvailableException.php.html#13\">App\\Library\\Domain\\Exceptions\\BookNotAvailableException::__toString<\/a>"],[0,1,"<a href=\"Exceptions\/ExceedsLoanLimitException.php.html#8\">App\\Library\\Domain\\Exceptions\\ExceedsLoanLimitException::__construct<\/a>"],[0,1,"<a href=\"Exceptions\/ExceedsLoanLimitException.php.html#13\">App\\Library\\Domain\\Exceptions\\ExceedsLoanLimitException::__toString<\/a>"],[0,1,"<a href=\"Exceptions\/ResourceNotFoundException.php.html#8\">App\\Library\\Domain\\Exceptions\\ResourceNotFoundException::__construct<\/a>"],[0,1,"<a href=\"Exceptions\/ResourceNotFoundException.php.html#13\">App\\Library\\Domain\\Exceptions\\ResourceNotFoundException::__toString<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/BookRepositoryImpl.php.html#19\">App\\Library\\Domain\\Repositorys\\Implementation\\BookRepositoryImpl::__construct<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/BookRepositoryImpl.php.html#25\">App\\Library\\Domain\\Repositorys\\Implementation\\BookRepositoryImpl::createBook<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/BookRepositoryImpl.php.html#46\">App\\Library\\Domain\\Repositorys\\Implementation\\BookRepositoryImpl::updateBook<\/a>"],[88.88888888888889,2,"<a href=\"Repositorys\/Implementation\/BookRepositoryImpl.php.html#68\">App\\Library\\Domain\\Repositorys\\Implementation\\BookRepositoryImpl::getBookById<\/a>"],[100,2,"<a href=\"Repositorys\/Implementation\/BookRepositoryImpl.php.html#86\">App\\Library\\Domain\\Repositorys\\Implementation\\BookRepositoryImpl::getAllBooks<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/BookRepositoryImpl.php.html#103\">App\\Library\\Domain\\Repositorys\\Implementation\\BookRepositoryImpl::deleteBook<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/BookRepositoryImpl.php.html#113\">App\\Library\\Domain\\Repositorys\\Implementation\\BookRepositoryImpl::assemblerBookWithSectionAndIsbn<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#22\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::__construct<\/a>"],[87.5,2,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#29\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::createLoan<\/a>"],[88.23529411764706,2,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#60\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::updateLoan<\/a>"],[88.88888888888889,2,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#92\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::getLoanById<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#110\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::toPickUpBooksFromALoan<\/a>"],[0,2,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#123\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::getAllLoans<\/a>"],[76.92307692307693,2,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#140\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::deleteLoan<\/a>"],[100,2,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#163\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::loanAndBookAssociationCreator<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#176\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::loanAndBookAssociationDestroyer<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#184\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::assemblerLoanWithUser<\/a>"],[100,2,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#190\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::assemblerLoanWithBooks<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#199\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::assemblerLoanWithUserAndBooks<\/a>"],[100,2,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#211\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::howManyCopiesOfABookAreOnLoan<\/a>"],[100,2,"<a href=\"Repositorys\/Implementation\/LoanRepositoryImpl.php.html#228\">App\\Library\\Domain\\Repositorys\\Implementation\\LoanRepositoryImpl::howManyLoansDoesAUserHave<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/SectionRepositoryImpl.php.html#14\">App\\Library\\Domain\\Repositorys\\Implementation\\SectionRepositoryImpl::__construct<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/SectionRepositoryImpl.php.html#19\">App\\Library\\Domain\\Repositorys\\Implementation\\SectionRepositoryImpl::getSectionById<\/a>"],[100,1,"<a href=\"Repositorys\/Implementation\/SectionRepositoryImpl.php.html#30\">App\\Library\\Domain\\Repositorys\\Implementation\\SectionRepositoryImpl::assemblerSection<\/a>"],[100,1,"<a href=\"Repositorys\/UserRepository.php.html#18\">App\\Library\\Domain\\Repositorys\\UserRepository::__construct<\/a>"],[100,1,"<a href=\"Repositorys\/UserRepository.php.html#23\">App\\Library\\Domain\\Repositorys\\UserRepository::createUser<\/a>"],[100,1,"<a href=\"Repositorys\/UserRepository.php.html#41\">App\\Library\\Domain\\Repositorys\\UserRepository::updateUser<\/a>"],[93.54838709677419,5,"<a href=\"Repositorys\/UserRepository.php.html#61\">App\\Library\\Domain\\Repositorys\\UserRepository::getUserById<\/a>"],[100,1,"<a href=\"Repositorys\/UserRepository.php.html#108\">App\\Library\\Domain\\Repositorys\\UserRepository::getAllUsers<\/a>"],[100,1,"<a href=\"Repositorys\/UserRepository.php.html#117\">App\\Library\\Domain\\Repositorys\\UserRepository::deleteUser<\/a>"],[100,1,"<a href=\"Services\/BookService.php.html#15\">App\\Library\\Domain\\Services\\BookService::__construct<\/a>"],[100,1,"<a href=\"Services\/BookService.php.html#23\">App\\Library\\Domain\\Services\\BookService::create<\/a>"],[100,1,"<a href=\"Services\/BookService.php.html#29\">App\\Library\\Domain\\Services\\BookService::update<\/a>"],[100,1,"<a href=\"Services\/BookService.php.html#38\">App\\Library\\Domain\\Services\\BookService::getAll<\/a>"],[100,1,"<a href=\"Services\/BookService.php.html#43\">App\\Library\\Domain\\Services\\BookService::getBookById<\/a>"],[100,1,"<a href=\"Services\/BookService.php.html#48\">App\\Library\\Domain\\Services\\BookService::delete<\/a>"],[100,1,"<a href=\"Services\/BookService.php.html#53\">App\\Library\\Domain\\Services\\BookService::assemblerBookEntitie<\/a>"],[100,1,"<a href=\"Services\/LoanService.php.html#21\">App\\Library\\Domain\\Services\\LoanService::__construct<\/a>"],[100,1,"<a href=\"Services\/LoanService.php.html#28\">App\\Library\\Domain\\Services\\LoanService::create<\/a>"],[100,1,"<a href=\"Services\/LoanService.php.html#44\">App\\Library\\Domain\\Services\\LoanService::update<\/a>"],[100,1,"<a href=\"Services\/LoanService.php.html#62\">App\\Library\\Domain\\Services\\LoanService::getLoanById<\/a>"],[100,1,"<a href=\"Services\/LoanService.php.html#67\">App\\Library\\Domain\\Services\\LoanService::getAllLoans<\/a>"],[100,1,"<a href=\"Services\/LoanService.php.html#72\">App\\Library\\Domain\\Services\\LoanService::delete<\/a>"],[75,5,"<a href=\"Services\/LoanService.php.html#77\">App\\Library\\Domain\\Services\\LoanService::userTypeChecker<\/a>"],[100,1,"<a href=\"Services\/LoanService.php.html#99\">App\\Library\\Domain\\Services\\LoanService::assemblerLoanEntitie<\/a>"],[88.88888888888889,3,"<a href=\"Services\/LoanService.php.html#110\">App\\Library\\Domain\\Services\\LoanService::assemblerArrayBookEntities<\/a>"],[100,1,"<a href=\"Services\/SectionService.php.html#11\">App\\Library\\Domain\\Services\\SectionService::__construct<\/a>"],[100,1,"<a href=\"Services\/SectionService.php.html#16\">App\\Library\\Domain\\Services\\SectionService::getSectionById<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

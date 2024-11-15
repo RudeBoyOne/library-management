@@ -1,7 +1,6 @@
 <?php
 namespace App\Library\Infrastructure\Persistence\Database;
 
-use App\Library\Infrastructure\Persistence\Connection;
 use PDO;
 
 class Database

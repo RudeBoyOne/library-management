@@ -37,16 +37,15 @@ class Connection
      */
     public function __construct()
     {
-        // $this->path = getenv('DB_PATH');
         $dsn = "sqlite:{$this->path}";
-        $this->connection = new PDO($dsn, null, null, [PDO::ATTR_PERSISTENT => true]);
+        $this->connection = new PDO($dsn, null, null, [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
 
     /**
      * Gets the single instance of the connection.
      * @return PDO The PDO instance for the database connection.
      */
-    public static function getInstance()
+    public static function getInstance(): PDO
     {
         if (self::$instance === null) {
             self::$instance = new self();
@@ -62,5 +61,13 @@ class Connection
     {
         self::$instance = new self();
         self::$instance->connection = $connection;
+    }
+
+    /**
+     * Reset the instance for testing purposes. 
+     * */
+    public static function resetInstance(): void
+    {
+        self::$instance = null;
     }
 }

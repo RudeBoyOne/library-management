@@ -2,13 +2,38 @@
 namespace Tests\Domain\Repositorys;
 
 use App\Library\Domain\Entities\Book;
+use App\Library\Domain\Entities\ISBN;
 use App\Library\Domain\Entities\Loan;
+use App\Library\Domain\Entities\Role;
+use App\Library\Domain\Entities\Section;
+use App\Library\Domain\Entities\UserEntities\Professor;
+use App\Library\Domain\Entities\UserEntities\Student;
 use App\Library\Domain\Entities\UserEntities\User;
+use App\Library\Domain\Repositorys\Implementation\BookRepositoryImpl;
 use App\Library\Domain\Repositorys\Implementation\LoanRepositoryImpl;
+use App\Library\Domain\Repositorys\Implementation\SectionRepositoryImpl;
+use App\Library\Domain\Repositorys\UserRepository;
+use App\Library\Infrastructure\Persistence\Connection;
 use App\Library\Util\DateTimeZoneCustom;
 use PDO;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Metadata\Covers;
 use Tests\SetupTests;
 
+#[CoversClass(LoanRepositoryImpl::class)]
+#[CoversClass(Book::class)]
+#[CoversClass(ISBN::class)]
+#[CoversClass(Loan::class)]
+#[CoversClass(Role::class)]
+#[CoversClass(Section::class)]
+#[CoversClass(Professor::class)]
+#[CoversClass(Student::class)]
+#[CoversClass(User::class)]
+#[CoversClass(BookRepositoryImpl::class)]
+#[CoversClass(SectionRepositoryImpl::class)]
+#[CoversClass(UserRepository::class)]
+#[CoversClass(Connection::class)]
+#[CoversClass(DateTimeZoneCustom::class)]
 class LoanRepositoryImplTest extends SetupTests
 {
     private LoanRepositoryImpl $loanRepository;
@@ -24,6 +49,12 @@ class LoanRepositoryImplTest extends SetupTests
         $this->insertSampleData();
     }
 
+    #[Covers('User::getId')]
+    #[Covers('Book::getId')]
+    #[Covers('Loan::getDateLoan')]
+    #[Covers('Loan::getReturnLoan')]
+    #[Covers('Loan::getUser')]
+    #[Covers('Loan::getBooks')]
     public function testCreateLoan(): void
     {
         $user = $this->createMock(User::class);
@@ -157,11 +188,36 @@ class LoanRepositoryImplTest extends SetupTests
         $this->connection->exec(" INSERT INTO loan_books (id_loan, id_book) VALUES ($idLoan, 1), ($idLoan, 2) ");
 
         $this->assertTrue($this->loanRepository->deleteLoan($idLoan));
-        
+
         $stmt = $this->connection->query("SELECT * FROM $this->table WHERE id = $idLoan");
         $loanResult = $stmt->fetch(PDO::FETCH_ASSOC);
         $this->assertFalse($loanResult);
         $stmt = $this->connection->query("SELECT * FROM $this->tableAssoc WHERE id_loan = $idLoan");
         $loanBooksResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $this->assertCount(0, $loanBooksResult);}
+        $this->assertCount(0, $loanBooksResult);
+    }
+
+    #[Covers('LoanRepositoryImpl::howManyCopiesOfABookAreOnLoan')]
+    public function testHowManyCopiesOfABookAreOnLoan()
+    {
+        $this->connection->exec("INSERT INTO loan_books (id_loan, id_book) VALUES (1, 1), (2, 1), (3, 2)");
+        $copiesOnLoan = $this->loanRepository->howManyCopiesOfABookAreOnLoan(1);
+        $this->assertEquals(2, $copiesOnLoan);
+        $copiesOnLoan = $this->loanRepository->howManyCopiesOfABookAreOnLoan(2);
+        $this->assertEquals(1, $copiesOnLoan);
+        $copiesOnLoan = $this->loanRepository->howManyCopiesOfABookAreOnLoan(3);
+        $this->assertEquals(0, $copiesOnLoan);
+    }
+
+    #[Covers('LoanRepositoryImpl::howManyLoansDoesAUserHave')]
+    public function testHowManyLoansDoesAUserHave()
+    {
+        $this->connection->exec("INSERT INTO loan (date_loan, return_loan, id_user) VALUES ('2024-11-01 10:00:00', '2024-11-15 10:00:00', 1)"); $this->connection->exec("INSERT INTO loan (date_loan, return_loan, id_user) VALUES ('2024-11-01 10:00:00', '2024-11-15 10:00:00', 1)"); $this->connection->exec("INSERT INTO loan (date_loan, return_loan, id_user) VALUES ('2024-11-01 10:00:00', '2024-11-15 10:00:00', 2)");
+        $loansCount = $this->loanRepository->howManyLoansDoesAUserHave(1);
+        $this->assertEquals(2, $loansCount);
+        $loansCount = $this->loanRepository->howManyLoansDoesAUserHave(2);
+        $this->assertEquals(1, $loansCount);
+        $loansCount = $this->loanRepository->howManyLoansDoesAUserHave(3);
+        $this->assertEquals(0, $loansCount);
+    }
 }

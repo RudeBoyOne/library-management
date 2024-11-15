@@ -6,14 +6,25 @@ use App\Library\Domain\Entities\ISBN;
 use App\Library\Domain\Entities\Section;
 use App\Library\Domain\Repositorys\BookRepository;
 use App\Library\Domain\Repositorys\Implementation\BookRepositoryImpl;
+use App\Library\Domain\Repositorys\Implementation\SectionRepositoryImpl;
+use App\Library\Infrastructure\Persistence\Connection;
 use PDO;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Metadata\Covers;
 use Tests\SetupTests;
 
+#[CoversClass(BookRepositoryImpl::class)]
+#[CoversClass(Book::class)]
+#[CoversClass(ISBN::class)]
+#[CoversClass(Section::class)]
+#[CoversClass(Connection::class)]
+#[CoversClass(SectionRepositoryImpl::class)]
 class BookRepositoryTest extends SetupTests
 {
     private BookRepository $bookRepository;
     private string $table = "book";
 
+    #[Covers('BookRepositoryImpl::__construct')]
     public function setUp(): void
     {
         parent::setUp();
@@ -23,12 +34,14 @@ class BookRepositoryTest extends SetupTests
         $this->insertSampleData();
     }
 
-    /**
-     * Test Create Book
-     *
-     * Test performed without Mock, as the ISBN class is final
-     * @return void
-     */
+    #[Covers('BookRepositoryImpl::createBook')]
+    #[Covers('ISBN::setValue')]
+    #[Covers('Section::getId')]
+    #[Covers('Book::setTitle')]
+    #[Covers('Book::setAuthor')]
+    #[Covers('Book::setIsbn')]
+    #[Covers('Book::setAmountOfBooks')]
+    #[Covers('Book::setSection')]
     public function testCreateBook(): void
     {
         $isbn = new ISBN();
@@ -55,6 +68,15 @@ class BookRepositoryTest extends SetupTests
         $this->assertEquals(2, $result['section']);
     }
 
+    #[Covers('BookRepositoryImpl::updateBook')]
+    #[Covers('ISBN::setValue')]
+    #[Covers('Section::getId')]
+    #[Covers('Book::setId')]
+    #[Covers('Book::setTitle')]
+    #[Covers('Book::setAuthor')]
+    #[Covers('Book::setIsbn')]
+    #[Covers('Book::setAmountOfBooks')]
+    #[Covers('Book::setSection')]
     public function testUpdateBook(): void
     {
         $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Original Title', 'Original Author', '9781234567890', 10, 1) ");
@@ -88,6 +110,14 @@ class BookRepositoryTest extends SetupTests
         $this->assertEquals(2, $result['section']);
     }
 
+    #[Covers('BookRepositoryImpl::getBookById')]
+    #[Covers('Book::getTitle')]
+    #[Covers('Book::getAuthor')]
+    #[Covers('Book::getIsbn')]
+    #[Covers('Book::getAmountOfBooks')]
+    #[Covers('Book::getSection')]
+    #[Covers('ISBN::getValue')]
+    #[Covers('Section::getId')]
     public function testGetBookById(): void
     {
         $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Test Book', 'John Doe', '9781234567890', 10, 1) ");
@@ -106,13 +136,14 @@ class BookRepositoryTest extends SetupTests
         $this->assertEquals(1, $book->getSection()->getId());
     }
 
-    /**
-     * testGetAllBooks
-     * 
-     * salinetar na documentação que na class SetupTests já ocorre a inserção de dois livros 
-     * por isso testamos ter 4 livros inseridos e acessamos os livros inseridos aqui pelos indices 2 e 3
-     * @return void
-     */
+    #[Covers('BookRepositoryImpl::getAllBooks')]
+    #[Covers('Book::getTitle')]
+    #[Covers('Book::getAuthor')]
+    #[Covers('Book::getIsbn')]
+    #[Covers('Book::getAmountOfBooks')]
+    #[Covers('Book::getSection')]
+    #[Covers('ISBN::getValue')]
+    #[Covers('Section::getId')]
     public function testGetAllBooks(): void
     {
         $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Book One', 'Author One', '9781234567890', 10, 1), ('Book Two', 'Author Two', '9780987654321', 5, 2) ");
@@ -133,6 +164,8 @@ class BookRepositoryTest extends SetupTests
         $this->assertEquals(2, $books[3]->getSection()->getId());
     }
 
+    #[Covers('BookRepositoryImpl::deleteBook')]
+    #[Covers('Book::getId')]
     public function testDeleteBook(): void
     {
         $this->connection->exec(" INSERT INTO book (title, author, isbn, amount_of_books, section) VALUES ('Test Book', 'John Doe', '9781234567890', 10, 1) ");
