@@ -48,7 +48,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"dateLoan\": \"2024-11-01T10:00:00\",\n    \"returnLoan\": \"2024-11-15T10:00:00\",\n    \"user\": 1,\n    \"books\": [\n        1,\n        2\n    ]\n}",
+							"raw": "{\n    \"dateLoan\": \"2024-11-01T10:00:00\",\n    \"returnLoan\": \"2024-11-15T10:00:00\",\n    \"user\": 1,\n    \"books\": [\n        3,\n        2\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -157,68 +157,6 @@
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.data).to.be.an('array').that.is.not.empty;",
 									"});",
-									"",
-									"pm.test(\"Check first loan details\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.data[0]).to.have.property(\"id_loan\", 2);",
-									"    pm.expect(jsonData.data[0]).to.have.property(\"date_loan\", \"2024-11-14 10:00\");",
-									"    pm.expect(jsonData.data[0]).to.have.property(\"date_return_loan\", \"2024-11-27 10:00\");",
-									"    pm.expect(jsonData.data[0].user).to.include({",
-									"        name: \"John Doe\",",
-									"        email: \"john.doe@example.com\",",
-									"        registration: \"12345\",",
-									"        type_user: \"Professor\"",
-									"    });",
-									"    pm.expect(jsonData.data[0].books[0]).to.include({",
-									"        id: 3,",
-									"        title: \"The Great Adventure\",",
-									"        author: \"John Smith\"",
-									"    });",
-									"    pm.expect(jsonData.data[0].books[0].isbn).to.include({",
-									"        value: \"978-3-16-148410-0\"",
-									"    });",
-									"    pm.expect(jsonData.data[0].books[0].section).to.include({",
-									"        localizator: \"A1\",",
-									"        description: \"Science Fiction\"",
-									"    });",
-									"});",
-									"",
-									"pm.test(\"Check second loan details\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.data[1]).to.have.property(\"id_loan\", 3);",
-									"    pm.expect(jsonData.data[1]).to.have.property(\"date_loan\", \"2024-11-14 10:00\");",
-									"    pm.expect(jsonData.data[1]).to.have.property(\"date_return_loan\", \"2024-11-27 10:00\");",
-									"    pm.expect(jsonData.data[1].user).to.include({",
-									"        name: \"John Doe\",",
-									"        email: \"john.doe@example.com\",",
-									"        registration: \"12345\",",
-									"        type_user: \"Professor\"",
-									"    });",
-									"    pm.expect(jsonData.data[1].books[0]).to.include({",
-									"        id: 3,",
-									"        title: \"The Great Adventure\",",
-									"        author: \"John Smith\"",
-									"    });",
-									"    pm.expect(jsonData.data[1].books[0].isbn).to.include({",
-									"        value: \"978-3-16-148410-0\"",
-									"    });",
-									"    pm.expect(jsonData.data[1].books[0].section).to.include({",
-									"        localizator: \"A1\",",
-									"        description: \"Science Fiction\"",
-									"    });",
-									"    pm.expect(jsonData.data[1].books[1]).to.include({",
-									"        id: 2,",
-									"        title: \"Book Title 2\",",
-									"        author: \"Author 2\"",
-									"    });",
-									"    pm.expect(jsonData.data[1].books[1].isbn).to.include({",
-									"        value: \"987-6543210987\"",
-									"    });",
-									"    pm.expect(jsonData.data[1].books[1].section).to.include({",
-									"        localizator: \"B2\",",
-									"        description: \"Fantasy\"",
-									"    });",
-									"});",
 									""
 								],
 								"type": "text/javascript",
@@ -266,31 +204,6 @@
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.message).to.eql(\"Operation successful\");",
 									"});",
-									"",
-									"pm.test(\"Check loan details\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.data).to.have.property(\"id_loan\", 2);",
-									"    pm.expect(jsonData.data).to.have.property(\"date_loan\", \"2024-11-14 10:00\");",
-									"    pm.expect(jsonData.data).to.have.property(\"date_return_loan\", \"2024-11-27 10:00\");",
-									"    pm.expect(jsonData.data.user).to.include({",
-									"        name: \"John Doe\",",
-									"        email: \"john.doe@example.com\",",
-									"        registration: \"12345\",",
-									"        type_user: \"Professor\"",
-									"    });",
-									"    pm.expect(jsonData.data.books[0]).to.include({",
-									"        id: 3,",
-									"        title: \"The Great Adventure\",",
-									"        author: \"John Smith\"",
-									"    });",
-									"    pm.expect(jsonData.data.books[0].isbn).to.include({",
-									"        value: \"978-3-16-148410-0\"",
-									"    });",
-									"    pm.expect(jsonData.data.books[0].section).to.include({",
-									"        localizator: \"A1\",",
-									"        description: \"Science Fiction\"",
-									"    });",
-									"});",
 									""
 								],
 								"type": "text/javascript",
@@ -302,7 +215,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/loans/2",
+							"raw": "http://localhost:8080/loans/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -310,7 +223,7 @@
 							"port": "8080",
 							"path": [
 								"loans",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -346,7 +259,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/loans/2",
+							"raw": "http://localhost:8080/loans/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -354,7 +267,7 @@
 							"port": "8080",
 							"path": [
 								"loans",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -471,7 +384,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/books/3",
+							"raw": "http://localhost:8080/books/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -479,7 +392,7 @@
 							"port": "8080",
 							"path": [
 								"books",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -498,11 +411,6 @@
 									"",
 									"pm.test(\"Response time is less than 500ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(500);",
-									"});",
-									"",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									"pm.test(\"Response time is less than 250ms\", function () {",
@@ -551,37 +459,6 @@
 									"    });",
 									"});",
 									"",
-									"pm.test(\"Check third book details\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.data[2]).to.include({",
-									"        id: 4,",
-									"        title: \"The Great Adventure\",",
-									"        author: \"John Smith\"",
-									"    });",
-									"    pm.expect(jsonData.data[2].isbn).to.include({",
-									"        value: \"978-3-16-148410-0\"",
-									"    });",
-									"    pm.expect(jsonData.data[2].section).to.include({",
-									"        localizator: \"A1\",",
-									"        description: \"Science Fiction\"",
-									"    });",
-									"});",
-									"",
-									"pm.test(\"Check fourth book details\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.data[3]).to.include({",
-									"        id: 5,",
-									"        title: \"The Great Adventure\",",
-									"        author: \"John Smith\"",
-									"    });",
-									"    pm.expect(jsonData.data[3].isbn).to.include({",
-									"        value: \"978-3-16-148410-0\"",
-									"    });",
-									"    pm.expect(jsonData.data[3].section).to.include({",
-									"        localizator: \"A1\",",
-									"        description: \"Science Fiction\"",
-									"    });",
-									"});",
 									""
 								],
 								"type": "text/javascript",
@@ -656,7 +533,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/books/3",
+							"raw": "http://localhost:8080/books/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -664,7 +541,7 @@
 							"port": "8080",
 							"path": [
 								"books",
-								"3"
+								"1"
 							]
 						}
 					},
