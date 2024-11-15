@@ -23,10 +23,7 @@
         "phpunit/phpunit": "^11.4"
     },
     "scripts": { 
-        "test": "vendor/bin/phpunit", 
-        "test-app": "vendor/bin/phpunit --testsuite 'Application Tests'", 
-        "test-domain": "vendor/bin/phpunit --testsuite 'Domain Tests' --display-deprecations --display-notices", 
-        "test-infra": "vendor/bin/phpunit --testsuite 'Infrastructure Tests'", 
-        "generate-docs": "/workspaces/live_ecommerce/documentation/tools/phpdocumentor -d /workspaces/live_ecommerce/App -t /workspaces/live_ecommerce/documentation/docs-api"
+        "test": "vendor/bin/phpunit --display-deprecations --display-notices",
+        "generate-docs": "/workspaces/live_ecommerce/documentation/tools/phpdocumentor -d /workspaces/live_ecommerce/App -t /workspaces/live_ecommerce/docs -s template.color=cyan"
     }
 }

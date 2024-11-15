@@ -4,3 +4,4 @@ documentation/.phpdoc
 documentation/.phive
 documentation/tools
 .phpdoc
+.phpunit.cache/
