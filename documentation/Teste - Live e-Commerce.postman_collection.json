@@ -1,0 +1,719 @@
+{
+	"info": {
+		"_postman_id": "27f57279-7677-4a37-a8ed-483ee60c7494",
+		"name": "Teste - Live e-Commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20377676"
+	},
+	"item": [
+		{
+			"name": "Loan",
+			"item": [
+				{
+					"name": "Create - loan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"    pm.expect(pm.response.to.have.status(201));",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields for loan schema validation\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('message');",
+									"    pm.expect(responseData).to.have.property('data');",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 250ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(250);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateLoan\": \"2024-11-01T10:00:00\",\n    \"returnLoan\": \"2024-11-15T10:00:00\",\n    \"user\": 1,\n    \"books\": [\n        1,\n        2\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/loans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"loans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - loan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate the schema of the response body\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData).to.have.property('message');",
+									"  pm.expect(responseData).to.have.property('data');",
+									"});",
+									"pm.test(\"Response time is less than 250ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(250);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateLoan\": \"2024-11-14T10:00:00\",\n    \"returnLoan\": \"2024-11-27T10:00:00\",\n    \"user\": 1,\n    \"books\": [\n        2\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/loans/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"loans",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all - loan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 250ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(250);",
+									"});",
+									"",
+									"pm.test(\"Operation successful\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql(\"Operation successful\");",
+									"});",
+									"",
+									"pm.test(\"Data array is not empty\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.be.an('array').that.is.not.empty;",
+									"});",
+									"",
+									"pm.test(\"Check first loan details\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[0]).to.have.property(\"id_loan\", 2);",
+									"    pm.expect(jsonData.data[0]).to.have.property(\"date_loan\", \"2024-11-14 10:00\");",
+									"    pm.expect(jsonData.data[0]).to.have.property(\"date_return_loan\", \"2024-11-27 10:00\");",
+									"    pm.expect(jsonData.data[0].user).to.include({",
+									"        name: \"John Doe\",",
+									"        email: \"john.doe@example.com\",",
+									"        registration: \"12345\",",
+									"        type_user: \"Professor\"",
+									"    });",
+									"    pm.expect(jsonData.data[0].books[0]).to.include({",
+									"        id: 3,",
+									"        title: \"The Great Adventure\",",
+									"        author: \"John Smith\"",
+									"    });",
+									"    pm.expect(jsonData.data[0].books[0].isbn).to.include({",
+									"        value: \"978-3-16-148410-0\"",
+									"    });",
+									"    pm.expect(jsonData.data[0].books[0].section).to.include({",
+									"        localizator: \"A1\",",
+									"        description: \"Science Fiction\"",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Check second loan details\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[1]).to.have.property(\"id_loan\", 3);",
+									"    pm.expect(jsonData.data[1]).to.have.property(\"date_loan\", \"2024-11-14 10:00\");",
+									"    pm.expect(jsonData.data[1]).to.have.property(\"date_return_loan\", \"2024-11-27 10:00\");",
+									"    pm.expect(jsonData.data[1].user).to.include({",
+									"        name: \"John Doe\",",
+									"        email: \"john.doe@example.com\",",
+									"        registration: \"12345\",",
+									"        type_user: \"Professor\"",
+									"    });",
+									"    pm.expect(jsonData.data[1].books[0]).to.include({",
+									"        id: 3,",
+									"        title: \"The Great Adventure\",",
+									"        author: \"John Smith\"",
+									"    });",
+									"    pm.expect(jsonData.data[1].books[0].isbn).to.include({",
+									"        value: \"978-3-16-148410-0\"",
+									"    });",
+									"    pm.expect(jsonData.data[1].books[0].section).to.include({",
+									"        localizator: \"A1\",",
+									"        description: \"Science Fiction\"",
+									"    });",
+									"    pm.expect(jsonData.data[1].books[1]).to.include({",
+									"        id: 2,",
+									"        title: \"Book Title 2\",",
+									"        author: \"Author 2\"",
+									"    });",
+									"    pm.expect(jsonData.data[1].books[1].isbn).to.include({",
+									"        value: \"987-6543210987\"",
+									"    });",
+									"    pm.expect(jsonData.data[1].books[1].section).to.include({",
+									"        localizator: \"B2\",",
+									"        description: \"Fantasy\"",
+									"    });",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/loans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"loans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get - loan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 250ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(250);",
+									"});",
+									"",
+									"pm.test(\"Operation successful\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql(\"Operation successful\");",
+									"});",
+									"",
+									"pm.test(\"Check loan details\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.have.property(\"id_loan\", 2);",
+									"    pm.expect(jsonData.data).to.have.property(\"date_loan\", \"2024-11-14 10:00\");",
+									"    pm.expect(jsonData.data).to.have.property(\"date_return_loan\", \"2024-11-27 10:00\");",
+									"    pm.expect(jsonData.data.user).to.include({",
+									"        name: \"John Doe\",",
+									"        email: \"john.doe@example.com\",",
+									"        registration: \"12345\",",
+									"        type_user: \"Professor\"",
+									"    });",
+									"    pm.expect(jsonData.data.books[0]).to.include({",
+									"        id: 3,",
+									"        title: \"The Great Adventure\",",
+									"        author: \"John Smith\"",
+									"    });",
+									"    pm.expect(jsonData.data.books[0].isbn).to.include({",
+									"        value: \"978-3-16-148410-0\"",
+									"    });",
+									"    pm.expect(jsonData.data.books[0].section).to.include({",
+									"        localizator: \"A1\",",
+									"        description: \"Science Fiction\"",
+									"    });",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/loans/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"loans",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get - loan Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 250ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(250);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/loans/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"loans",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Create - book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"  pm.response.to.have.status(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required schema for a book object\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('message');",
+									"    pm.expect(responseData).to.have.property('data');",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 250ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(250);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"The Great Adventure\",\n    \"author\": \"John Smith\",\n    \"isbn\": \"978-3-16-148410-0\",\n    \"amountOfBooks\": 5,\n    \"section\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body should have the correct schema\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('message');",
+									"    pm.expect(responseData).to.have.property('data');",
+									"});",
+									"pm.test(\"Response time is less than 250ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(250);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"The Art of Coding\",\n    \"author\": \"John Programmer\",\n    \"isbn\": \"978-0-13-597444-5\",\n    \"amountOfBooks\": 8,\n    \"section\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/books/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all - books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 250ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(250);",
+									"});",
+									"",
+									"pm.test(\"Operation successful\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql(\"Operation successful\");",
+									"});",
+									"",
+									"pm.test(\"Data array is not empty\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.be.an('array').that.is.not.empty;",
+									"});",
+									"",
+									"pm.test(\"Check first book details\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[0]).to.include({",
+									"        id: 2,",
+									"        title: \"Book Title 2\",",
+									"        author: \"Author 2\"",
+									"    });",
+									"    pm.expect(jsonData.data[0].isbn).to.include({",
+									"        value: \"987-6543210987\"",
+									"    });",
+									"    pm.expect(jsonData.data[0].section).to.include({",
+									"        localizator: \"B2\",",
+									"        description: \"Fantasy\"",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Check second book details\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[1]).to.include({",
+									"        id: 3,",
+									"        title: \"The Art of Coding\",",
+									"        author: \"John Programmer\"",
+									"    });",
+									"    pm.expect(jsonData.data[1].isbn).to.include({",
+									"        value: \"978-0-13-597444-5\"",
+									"    });",
+									"    pm.expect(jsonData.data[1].section).to.include({",
+									"        localizator: \"B2\",",
+									"        description: \"Fantasy\"",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Check third book details\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[2]).to.include({",
+									"        id: 4,",
+									"        title: \"The Great Adventure\",",
+									"        author: \"John Smith\"",
+									"    });",
+									"    pm.expect(jsonData.data[2].isbn).to.include({",
+									"        value: \"978-3-16-148410-0\"",
+									"    });",
+									"    pm.expect(jsonData.data[2].section).to.include({",
+									"        localizator: \"A1\",",
+									"        description: \"Science Fiction\"",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Check fourth book details\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[3]).to.include({",
+									"        id: 5,",
+									"        title: \"The Great Adventure\",",
+									"        author: \"John Smith\"",
+									"    });",
+									"    pm.expect(jsonData.data[3].isbn).to.include({",
+									"        value: \"978-3-16-148410-0\"",
+									"    });",
+									"    pm.expect(jsonData.data[3].section).to.include({",
+									"        localizator: \"A1\",",
+									"        description: \"Science Fiction\"",
+									"    });",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get - book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 250ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(250);",
+									"});",
+									"",
+									"pm.test(\"Operation successful\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql(\"Operation successful\");",
+									"});",
+									"",
+									"pm.test(\"Check book details\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.include({",
+									"        id: 3,",
+									"        title: \"The Art of Coding\",",
+									"        author: \"John Programmer\"",
+									"    });",
+									"    pm.expect(jsonData.data.isbn).to.include({",
+									"        value: \"978-0-13-597444-5\"",
+									"    });",
+									"    pm.expect(jsonData.data.section).to.include({",
+									"        localizator: \"B2\",",
+									"        description: \"Fantasy\"",
+									"    });",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/books/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get - loan Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 204\", function () {",
+									"  pm.expect(pm.response.code).to.equal(204);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 250ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(250);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/books/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
