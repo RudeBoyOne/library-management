@@ -11,6 +11,12 @@ use App\Library\Util\DateTimeZoneCustom;
 use PDO;
 use PDOException;
 
+/**
+ * Class LoanRepositoryImpl
+ * 
+ * Implements the LoanRepository interface using a PDO connection. 
+ * 
+ * */
 class LoanRepositoryImpl implements LoanRepository
 {
     private PDO $connection;
@@ -19,13 +25,22 @@ class LoanRepositoryImpl implements LoanRepository
     private UserRepository $userRepository;
     private BookRepository $bookRepository;
 
+    /**
+     * Constructor for the LoanRepositoryImpl class.
+     * 
+     * Initializes the database connection and repositories. 
+     * */
     public function __construct()
     {
         $this->connection = Connection::getInstance();
         $this->userRepository = new UserRepository();
         $this->bookRepository = new BookRepositoryImpl();
     }
-
+    
+    /**
+     * {@inheritDoc} 
+     * 
+     * */
     public function createLoan(Loan $loan): bool
     {
 
@@ -56,7 +71,11 @@ class LoanRepositoryImpl implements LoanRepository
 
         }
     }
-
+    
+    /**
+     * {@inheritDoc} 
+     * 
+     * */
     public function updateLoan(Loan $loan): bool
     {
         $idLoan = $loan->getId();
@@ -88,7 +107,11 @@ class LoanRepositoryImpl implements LoanRepository
 
         }
     }
-
+    
+    /**
+     * {@inheritDoc} 
+     * 
+     * */
     public function getLoanById(int $idLoan): Loan
     {
         $query = "SELECT * FROM $this->table WHERE id = :id_loan";
@@ -104,9 +127,13 @@ class LoanRepositoryImpl implements LoanRepository
         $loanEntitie = $this->assemblerLoanWithUserAndBooks($loan);
         
         return $loanEntitie;
-
+        
     }
-
+    
+    /**
+     * {@inheritDoc} 
+     * 
+     * */
     public function toPickUpBooksFromALoan(int $idLoan): array
     {
         $query = "SELECT * FROM $this->tableAssoc WHERE id_loan = :id_loan";
@@ -120,6 +147,10 @@ class LoanRepositoryImpl implements LoanRepository
         return $booksEntitie;
     }
 
+    /**
+     * {@inheritDoc} 
+     * 
+     * */
     public function getAllLoans(): array
     {
         $loansEntitiesArray = array();
@@ -137,6 +168,10 @@ class LoanRepositoryImpl implements LoanRepository
         return $loansEntitiesArray;
     }
 
+    /**
+     * {@inheritDoc} 
+     * 
+     * */
     public function deleteLoan(int $idLoan): bool
     {
         $queryDeleteBooks = "DELETE FROM $this->tableAssoc WHERE id_loan = :id_loan";
@@ -160,6 +195,13 @@ class LoanRepositoryImpl implements LoanRepository
         }
     }
 
+
+    /**
+     * Creates associations between a loan and books.
+     * 
+     * @param int $idLoan The ID of the loan.
+     * @param array $books The books to associate with the loan. 
+     * */
     private function loanAndBookAssociationCreator(int $idLoan, array $books)
     {
         $query = "INSERT INTO $this->tableAssoc(id_loan, id_book) VALUES(:id_loan, :id_book)";
@@ -173,6 +215,13 @@ class LoanRepositoryImpl implements LoanRepository
         }
     }
 
+    /**
+     * Creates associations between a loan and books.
+     * 
+     * @param int $idLoan The ID of the loan.
+     * @param array $books The books to associate with the loan. 
+     * 
+     * */
     private function loanAndBookAssociationDestroyer(int $idLoan)
     {
         $query = "DELETE FROM $this->tableAssoc WHERE id_loan = :id_loan";
@@ -181,12 +230,26 @@ class LoanRepositoryImpl implements LoanRepository
         $statementDelete->execute();
     }
 
+    /** 
+     * Assembles a loan with the user entity.
+     * 
+     * @param int $idUser The ID of the user.
+     * @return mixed The user entity. 
+     * 
+     * */
     private function assemblerLoanWithUser(int $idUser)
     {
         $user = $this->userRepository->getUserById($idUser);
         return $user;
     }
 
+    /**
+     * Assembles a loan with the associated books.
+     * 
+     * 
+     * @param array $resulLoanAssocBook The result set of loan and book associations.
+     * @return array The books associated with the loan. 
+     * */
     private function assemblerLoanWithBooks(array $resulLoanAssocBook): array
     {
         $books = [];
@@ -196,6 +259,13 @@ class LoanRepositoryImpl implements LoanRepository
         return $books;
     }
 
+    /** 
+     * Assembles a loan with the user and associated books.
+     * 
+     * @param object $loan The loan object.
+     * @return Loan The assembled loan entity. 
+     * 
+     * */
     private function assemblerLoanWithUserAndBooks($loan): Loan
     {
         $loanEntitie = new Loan();
@@ -208,6 +278,11 @@ class LoanRepositoryImpl implements LoanRepository
         return $loanEntitie;
     }
 
+    /**
+     * 
+     * {@inheritDoc} 
+     * 
+     * */
     public function howManyCopiesOfABookAreOnLoan(int $idBook): int
     {
         $query = "SELECT COUNT(*) AS count FROM loan_books WHERE id_book = :id_book GROUP BY id_book";
@@ -225,6 +300,11 @@ class LoanRepositoryImpl implements LoanRepository
         return (int) $result['count'];
     }
 
+    /**
+     * 
+     * {@inheritDoc} 
+     * 
+     * */
     public function howManyLoansDoesAUserHave(int $idUser): int
     {
         $query = "SELECT COUNT(*) AS count FROM loan WHERE id_user = :id_user GROUP BY id_user";

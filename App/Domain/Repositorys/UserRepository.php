@@ -9,17 +9,33 @@ use App\Library\Infrastructure\Persistence\Connection;
 use InvalidArgumentException;
 use PDO;
 
+/** 
+ * Class UserRepository
+ * 
+ * This class manages the persistence of users in the database. 
+ */
 class UserRepository
 {
     private PDO $connection;
     private string $table = 'user';
     private string $tableAssoc = 'role';
 
+    /**
+     * Constructor for the UserRepository class.
+     * 
+     * Initializes the database connection. 
+     */
     public function __construct()
     {
         $this->connection = Connection::getInstance();
     }
 
+    /** 
+     * Creates a new user in the database.
+     * 
+     * @param User $user The user to be created.
+     * @return bool Returns true if the user was successfully created, false otherwise. 
+     */
     public function createUser(User $user): bool
     {
         $name = $user->getName();
@@ -38,6 +54,13 @@ class UserRepository
         return $statement->execute();
     }
 
+    /**
+     * Updates an existing user in the database.
+     * 
+     * @param User $user The user to be updated.
+     * @return bool Returns true if the user was successfully updated, false otherwise. 
+     * 
+     */
     public function updateUser(User $user): bool
     {
         $id = $user->getId();
@@ -58,6 +81,13 @@ class UserRepository
         return $statement->execute();
     }
 
+    /**
+     * Retrieves a user from the database by their ID.
+     * 
+     * @param int $idUser The ID of the user to be retrieved.
+     * @return User|null Returns the user found or null if not found.
+     * @throws InvalidArgumentException If the user's role name is unknown. 
+     */
     public function getUserById(int $idUser): ?User
     {
         $query = "SELECT u.*, r.name as role_name FROM $this->table u JOIN $this->tableAssoc r ON u.role = r.id WHERE u.id = :id";
@@ -105,6 +135,11 @@ class UserRepository
         }
     }
 
+    /**
+     * Retrieves all users from the database.
+     * 
+     * @return array Returns an array of all users found. 
+     */
     public function getAllUsers(): array
     {
         $query = "SELECT * FROM $this->table";
@@ -114,13 +149,19 @@ class UserRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Deletes a user from the database by their ID.
+     * @param int $idUser The ID of the user to be deleted.
+     * @return bool Returns true if the user was successfully deleted, false otherwise. 
+     * 
+     */
     public function deleteUser($idUser): bool
     {
         $query = "DELETE FROM $this->table WHERE id = :id";
 
         $statement = $this->connection->prepare($query);
         $statement->bindParam(":id", $idUser, PDO::PARAM_INT);
-        
+
         return $statement->execute();
     }
 }
