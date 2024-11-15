@@ -98,7 +98,7 @@ class LoanRepositoryImpl implements LoanRepository
         $loan = $statement->fetch(PDO::FETCH_OBJ);
 
         if (!$loan) {
-            throw new ResourceNotFoundException("Empréstimo", $idLoan);
+            throw new ResourceNotFoundException("Loan", $idLoan);
         }
         
         $loanEntitie = $this->assemblerLoanWithUserAndBooks($loan);

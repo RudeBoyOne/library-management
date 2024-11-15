@@ -5,7 +5,7 @@ use Exception;
 
 class ExceedsLoanLimitException extends Exception
 {
-    public function __construct($message = "Usuário excedeu o limite de empréstimos", $code = 0, Exception $previous = null)
+    public function __construct($message = "User has exceeded the loan limit", $code = 0, Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

@@ -5,7 +5,7 @@ use Exception;
 
 class BookNotAvailableException extends Exception
 {
-    public function __construct($message = "Livro não disponível", $code = 0, Exception $previous = null)
+    public function __construct($message = "Book not available", $code = 0, Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
