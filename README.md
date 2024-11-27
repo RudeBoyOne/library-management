@@ -51,10 +51,10 @@ app/library/
     [Code Documentation](https://rudeboyone.github.io/library-management/)
 
 
-
+### Como testar:
 > Dependências: php 8.3 e sqlite 3
 
-1. cloar o repositório
+1. clonar o repositório
  ```
 git clone https://github.com/RudeBoyOne/library-management.git
 ```
